@@ -6,7 +6,7 @@
 </div>
 
 <div class="border bg-light p-4">
-    <form action="<? echo base_url("/back/add_category") ?>" method="POST">
+    <form action="<? echo base_url("/back/add_category_done") ?>" method="POST">
    
         <div class="row">
             <div class="col-4">

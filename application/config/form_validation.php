@@ -156,7 +156,7 @@ $config = [
         ],
     ],
 
-    'back/add_category' => [
+    'back/add_category_done' => [
         [
             'field' => 'nom',
             'label' => 'nom',

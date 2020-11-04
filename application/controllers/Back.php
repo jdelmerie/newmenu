@@ -121,12 +121,17 @@ class Back extends CI_Controller
             $data['title'] = 'Votre carte - Catégories de produits';
             $this->template->load('layout', 'back/categories/display_all', $data);
         } else {
-            $data['title'] = 'Votre carte - Ajouter une catégorie de produits';
-            $this->template->load('layout', 'back/categories/add', $data);
+            $this->add_category();
         }
     }
 
     public function add_category()
+    {
+        $data['title'] = 'Votre carte - Ajouter une catégorie de produits';
+        $this->template->load('layout', 'back/categories/add', $data);
+    }
+
+    public function add_category_done()
     {
         $this->load->library('form_validation');
         $nom = $this->input->post('nom');
@@ -173,7 +178,7 @@ class Back extends CI_Controller
             redirect("back/categories");
         }
     }
-    
+
     public function delete_category($cat_id)
     {
         $this->load->model('Categories_model', 'categories');

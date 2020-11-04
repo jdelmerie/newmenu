@@ -46,6 +46,10 @@
 
 </div>
 
+<a class="mt-5 btn btn-primary" href="/back/add_category">Créer une catégorie de produits</a>
+
+
+
 
 <!-- TODOS : 
 <br>Nombres de produits (à voir après)<br>Achiffer si cette cat a des qty -->
