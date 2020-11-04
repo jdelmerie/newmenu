@@ -39,4 +39,13 @@ class Establishments_model extends CI_Model
         $this->db->set($data);
         $this->db->update('establishments');
     }
+
+    public function countCat($etab_id)
+    {
+        $this->db->select('*');
+        $this->db->from('categories');
+        $this->db->where('est_id', $etab_id);
+        $count = $this->db->count_all_results();
+        return $count;
+    }
 }

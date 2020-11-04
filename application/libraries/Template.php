@@ -17,7 +17,7 @@ class Template {
                 '/back/dashboard' => 'Tableau de bord', 
                 '/back/establishments' => 'Etablissement', 
                 '/back/customize' => 'Personnalisation', 
-                '/back/categories' => 'Catégorie de produits', 
+                '/back/categories' => 'Catégories de produits', 
                 '/back/products' => 'Produits', 
                 '/welcome/logout' => 'Déconnexion'));			
 			return $this->CI->load->view($template, $this->template_data, $return);

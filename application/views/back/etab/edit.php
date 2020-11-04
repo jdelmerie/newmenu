@@ -2,16 +2,19 @@
     <h2>Etablissement</h2>
 </div>
 
+<div class="border bg-light p-4">
+
+
 <div class="bg-success p-2 text-white small mb-3">
     Ce formulaire correspond aux informations de base de votre établissement telles que son nom, son adresse, etc... L'adresse web d'accès à votre carte est très importante.
 </div>
 
 <? if ($this->session->flashdata('success_update')) { ?>
-        <hr>
-        <div class="alert alert-success" role="alert">
-            <? echo $this->session->flashdata('success_update'); ?>
-        </div>
-    <?}?>
+    <hr>
+    <div class="alert alert-success" role="alert">
+        <? echo $this->session->flashdata('success_update'); ?>
+    </div>
+<?}?>
 
 <form action="<?echo base_url('/back/edit_etabs') ?>" method="POST">
     <div class="row">
@@ -84,4 +87,4 @@
 </div>
 <?}?>
 
-
+</div>

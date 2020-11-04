@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-require_once 'env.php';
+// require_once 'env.php';
 
 class Welcome extends CI_Controller
 {
@@ -61,6 +61,7 @@ class Welcome extends CI_Controller
 
     public function sendmail($user_id, $activation_hash, $email)
     {
+        // TODOS : urlencode les mpd 
         $lien_validation = "<a href='http://newmenu.local/welcome/validation?id=$user_id&activation=$activation_hash'>ICI</a>";
         $objet = 'Création de compte pour NewMenu';
         $message = "Pour valider votre compte, cliquez sur le lien : $lien_validation";

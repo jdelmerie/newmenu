@@ -2,13 +2,16 @@
     <h2>Tableau de bord</h2>
 </div>
 
+<div class="border bg-light p-4">
+
+
 <div class="row">
     <div class="col-4">
         <a href="/dashboard/editstyle">
-            <div class="border p-3 mb-3 text-center"><i class="fas fa-store-alt"></i></div>
+            <div class="border p-5 mb-3 text-center"><i class="fas fa-store-alt"></i></div>
         </a>
 
-        <h5><?=ucfirst($etab->name)?></h5>
+        <h4 class="border p-3 text-center bg-info text-white"><?=ucfirst($etab->name)?></h4>
 
         <address><i class="fas fa-map-marker-alt"></i> Adresse : <?=$etab->adress?> <br> <?=$etab->postal_code?> <?=strtoupper($etab->city)?></address>
 
@@ -28,14 +31,16 @@
         
         <div class="p-3">
             <h5>Catégories de produits</h5>
-            <p>Votre carte contient <??> catégories.</p>
-            <span><a href="/dashboard/new_category/<?=$etab->id?>">Créer une nouvelle catégorie</a></span>
+            <p>Votre carte contient <?=$count_cat?> catégories.</p>
+            <span><a href="/back/newcategory/">Créer une nouvelle catégorie</a></span>
         </div>
         
         <div class="p-3">
             <h5>Produits</h5>
-            <p>Votre carte contient <??> produits.</p>
+            <p>Votre carte contient <??> .. produits.</p>
             <span><a href="/dashboard/add_product/<?=$etab->id?>">Créer un nouveau produit</a></span>
         </div>
     </div>
+</div>
+
 </div>

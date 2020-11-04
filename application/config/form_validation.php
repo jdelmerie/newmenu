@@ -136,4 +136,44 @@ $config = [
         ],
     ],
 
+    'back/edit_category_done' => [
+        [
+            'field' => 'nom',
+            'label' => 'nom',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'description',
+            'label' => 'description',
+            'rules' => 'max_length[100]',
+        ],
+
+        [
+            'field' => 'rang',
+            'label' => 'rang',
+            'rules' => '',
+        ],
+    ],
+
+    'back/add_category' => [
+        [
+            'field' => 'nom',
+            'label' => 'nom',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'description',
+            'label' => 'description',
+            'rules' => 'max_length[100]',
+        ],
+
+        [
+            'field' => 'rang',
+            'label' => 'rang',
+            'rules' => '',
+        ],
+    ],
+
 ];

@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-
+require_once 'env.php';
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
