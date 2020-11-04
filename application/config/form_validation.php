@@ -48,4 +48,92 @@ $config = [
         ],
     ],
 
+    'back/add_etabs' => [
+        [
+            'field' => 'nom',
+            'label' => 'nom',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'url',
+            'label' => 'url',
+            'rules' => 'trim|required',
+        ],
+
+        [
+            'field' => 'adresse',
+            'label' => 'adresse',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'code_postale',
+            'label' => 'code_postale',
+            'rules' => 'required|numeric',
+        ],
+
+        [
+            'field' => 'ville',
+            'label' => 'ville',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'telephone',
+            'label' => 'telephone',
+            'rules' => 'required|numeric',
+        ],
+
+        [
+            'field' => 'site',
+            'label' => 'site',
+            'rules' => 'required|valid_url',
+        ],
+    ],
+
+    'back/edit_etabs' => [
+        [
+            'field' => 'nom',
+            'label' => 'nom',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'url',
+            'label' => 'url',
+            'rules' => 'trim|required',
+        ],
+
+        [
+            'field' => 'adresse',
+            'label' => 'adresse',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'code_postale',
+            'label' => 'code_postale',
+            'rules' => 'required|numeric',
+        ],
+
+        [
+            'field' => 'ville',
+            'label' => 'ville',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'telephone',
+            'label' => 'telephone',
+            'rules' => 'required|numeric',
+        ],
+
+        [
+            'field' => 'site',
+            'label' => 'site',
+            'rules' => 'required|valid_url',
+        ],
+    ],
+
 ];

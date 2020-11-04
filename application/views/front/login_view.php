@@ -33,6 +33,10 @@
 <div class="alert alert-danger" role="alert">
 <?echo $this->session->flashdata('error') ?>
 </div>
+<?} else if ($this->session->flashdata('error_co')) {?>
+<div class="alert alert-danger" role="alert">
+<?echo $this->session->flashdata('error_co') ?>
+</div>
 <?}?>
             <a href="/welcome/signin">Vous n'avez pas encore de compte ? Inscrivez vous ici.</a>
         </div>
