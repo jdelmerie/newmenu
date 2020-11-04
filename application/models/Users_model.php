@@ -22,4 +22,21 @@ class Users_model extends CI_Model
         $this->db->set($data);
         $this->db->update('users');
     }
+
+    public function selectByEmail($email)
+    {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('email', $email);
+        $query = $this->db->get();
+        return $query->result()[0];
+    }
+
+    public function updatePwd($data, $email)
+    {
+        $this->db->where('email', $email);
+        $this->db->set($data);
+        $this->db->update('users');
+    }
+
 }

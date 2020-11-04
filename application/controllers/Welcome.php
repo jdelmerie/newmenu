@@ -102,5 +102,36 @@ class Welcome extends CI_Controller
         $this->load->view('partials/header', $data);
         $this->load->view('front/login_view');
         $this->load->view('partials/footer');
-	}
+    }
+    
+    public function forgotten_password()
+    {
+        $data['title'] = 'New Menu - Mot de passe oublié';
+
+        $this->load->view('partials/header', $data);
+        $this->load->view('front/forgotten_password');
+        $this->load->view('partials/footer');
+    }
+
+    public function new_password()
+    {
+        $this->load->library('form_validation');
+
+        $email = $this->input->post("email");
+        $password = $this->input->post("password");
+
+        if ($this->form_validation->run() == true) {
+            $this->load->model('Users_model', 'users');
+            $this->users->selectByEmail($email);
+            $new_password = password_hash($password, PASSWORD_DEFAULT);
+            $data = ['password' => $new_password];
+            $this->users->updatePwd($data, $email);
+            $this->session->set_flashdata('success_new_pwd', 'Votre mot de passe a été modifié, vous pouvez vous connecter.');
+            redirect('welcome/login');
+        } else {
+            $this->session->set_flashdata('error', "Une erreur s'est produite.");
+            redirect('welcome/forgotten_password');
+        }
+    }
+
 }
