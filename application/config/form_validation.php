@@ -34,4 +34,18 @@ $config = [
         ],
     ],
 
+    'welcome/connexion' => [
+        [
+            'field' => 'email',
+            'label' => 'email',
+            'rules' => 'required|trim|valid_email',
+        ],
+
+        [
+            'field' => 'password',
+            'label' => 'password',
+            'rules' => 'required|trim|min_length[8]',
+        ],
+    ],
+
 ];

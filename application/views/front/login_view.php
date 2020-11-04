@@ -29,6 +29,10 @@
 <div class="alert alert-success" role="alert">
 <?echo $this->session->flashdata('success_new_pwd') ?>
 </div>
+<?} else if ($this->session->flashdata('error')) {?>
+<div class="alert alert-danger" role="alert">
+<?echo $this->session->flashdata('error') ?>
+</div>
 <?}?>
             <a href="/welcome/signin">Vous n'avez pas encore de compte ? Inscrivez vous ici.</a>
         </div>
