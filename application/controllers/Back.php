@@ -182,8 +182,84 @@ class Back extends CI_Controller
     public function delete_category($cat_id)
     {
         $this->load->model('Categories_model', 'categories');
-        $this->categories->delete($cat_id);
-        $this->session->set_flashdata('success_del', 'Catégorie supprimée');
-        redirect("back/categories");
+
+        if ($this->categories->delete($cat_id)) {
+            $this->session->set_flashdata('alert', '<strong>Impossible de supprimer.</strong><br>Un ou plusieurs produits sont associés à cette catégorie. Vous devez les supprimer avant de pouvoir supprimer cette catégorie.');
+            redirect("back/categories");
+        } else {
+            $this->session->set_flashdata('success_del', 'Catégorie supprimée');
+            redirect("back/categories");
+        }
+    }
+
+    public function products()
+    {
+        $etab_id = $this->session->userdata('etab_id');
+        $data['title'] = 'Votre carte - Liste de produit';
+        $this->load->model('Categories_model', 'categories');
+        $data['categories'] = $this->categories->selectAll($etab_id);
+        $data['display_produits'] = '';
+
+        if (count($data['categories']) > 0) {
+            $this->template->load('layout', 'back/products/all_prod', $data);
+        } else {
+            $this->add_product();
+        }
+    }
+
+    public function add_product()
+    {
+        $etab_id = $this->session->userdata('etab_id');
+        $data['title'] = 'Votre carte - Ajouter un produit';
+        $this->load->model('Categories_model', 'categories');
+        $data['categories'] = $this->categories->selectAll($etab_id);
+
+        if (count($data['categories']) > 0) {
+            $data['display_categories'] = $this->load->view('back/products/select_cat', $data, true);
+        } else {
+            $data['display_categories'] = $this->load->view('back/products/no_cat', '', true);
+        }
+        $this->template->load('layout', 'back/products/add', $data);
+    }
+
+    public function add_product_done()
+    {
+        $this->load->library('form_validation');
+
+        $cat_id = $this->input->post('categorie');
+        $nom = $this->input->post('nom');
+        $description = $this->input->post('description');
+        $prix = $this->input->post('prix');
+        $rang = $this->input->post('rang');
+
+        if ($this->form_validation->run() == true) {
+            $this->load->model('Products_model', 'products');
+            $data = ['cat_id' => $cat_id, 'name' => $nom, 'composition' => $description, 'price' => $prix, 'rank' => $rang];
+            $this->products->add($data);
+            $prod_id = $this->db->insert_id();
+            // $this->edit_prod($prod_id);
+            echo "produit ajouté";
+        } else {
+            $this->session->set_flashdata('error', "Une erreur s'est produite.");
+            redirect("back/products");
+        }
+    }
+
+    public function display_products($cat_id)
+    {
+        $etab_id = $this->session->userdata('etab_id');
+        $this->load->model('Products_model', 'products');
+        $data['produits'] = $this->products->selectAll($cat_id);
+        $this->load->model('Categories_model', 'categories');
+        $data['category'] = $this->categories->selectById($cat_id);
+        $data['title'] = "Votre carte - " . $data['category']->name;
+
+        if (count($data['produits']) > 0) {
+            $data['categories'] = $this->categories->selectAll($etab_id);
+            $data['display_produits'] = $this->load->view('back/products/show_prod', $data, true);
+            $this->template->load('layout', 'back/products/all_prod', $data);
+        } else {
+            redirect('back/add_product');
+        }
     }
 }

@@ -18,6 +18,8 @@
         <p><i class="fas fa-phone-alt"></i> Téléphone : <?=$etab->phone?></p>
 
         <p><i class="fas fa-wifi"></i> Site web : <?=$etab->web_site?></p>
+
+        <span><a href="/back/establishments/">Modifier les informations de contact</a></span>
     </div>
 
     <div class="col-6">

@@ -19,7 +19,7 @@ class Template {
                 '/back/customize' => 'Personnalisation', 
                 '/back/categories' => 'Catégories de produits', 
                 '/back/products' => 'Produits', 
-                '/welcome/logout' => 'Déconnexion'));			
+				'/welcome/logout' => 'Déconnexion'));		
 			return $this->CI->load->view($template, $this->template_data, $return);
 		}
 }

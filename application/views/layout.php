@@ -18,7 +18,7 @@
             <h1 class="text-center text-white display-4">NEW MENU</h1>
             <ul class="nav flex-column mt-5 mb-5 text-center">
                 <?foreach ($nav_list as $route => $nav_item) {?>
-                <a class="btn btn-primary btn-sm m-2" href="<?=$route?>"><?=$nav_item?></a>
+                  <a class="btn btn-primary btn-sm m-2" href="<?=$route?>"><?=$nav_item?></a>
                 <?}?>
             </ul>
         </div>

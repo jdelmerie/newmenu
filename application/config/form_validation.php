@@ -176,4 +176,31 @@ $config = [
         ],
     ],
 
+    'back/add_product_done' => [
+        [
+            'field' => 'nom',
+            'label' => 'nom',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'description',
+            'label' => 'description',
+            'rules' => 'max_length[100]',
+        ],
+
+        [
+            'field' => 'prix',
+            'label' => 'prix',
+            'rules' => 'integer',
+        ],
+
+        [
+            'field' => 'rang',
+            'label' => 'rang',
+            'rules' => '',
+        ],
+    ],
+
+
 ];

@@ -31,18 +31,24 @@
   <?echo $this->session->flashdata('success_edit') ?>
 </div>
 <?} else if ($this->session->flashdata('error')) {?>
-<div class="alert alert-warning" role="alert">
+<div class="alert alert-danger" role="alert">
 <?echo $this->session->flashdata('error') ?>
 </div>
 <?} else if ($this->session->flashdata('success_del')) {?>
-<div class="alert alert-warning" role="alert">
+<div class="alert alert-success" role="alert">
 <?echo $this->session->flashdata('success_del') ?>
 </div>
 <?} else if ($this->session->flashdata('success_add')) {?>
-<div class="alert alert-warning" role="alert">
+<div class="alert alert-success" role="alert">
 <?echo $this->session->flashdata('success_add') ?>
 </div>
-<?}?>
+<?} else if ($this->session->flashdata('alert')) {?>
+<div class="alert alert-warning" role="alert">
+<?echo $this->session->flashdata('alert') ?>
+</div>
+<?} ?>
+
+
 
 </div>
 

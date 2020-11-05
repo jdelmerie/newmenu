@@ -33,7 +33,9 @@ class Categories_model extends CI_Model
 
     public function delete($cat_id)
     {
-        $this->db->where('id', $cat_id);
-        $this->db->delete('categories');
+        if (!$this->db->delete('categories', ['id' => $cat_id])) {
+            return $this->db->error();
+        }
+        return false;
     }
 }
