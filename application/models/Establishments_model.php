@@ -48,4 +48,15 @@ class Establishments_model extends CI_Model
         $count = $this->db->count_all_results();
         return $count;
     }
+
+    public function countProd($etab_id)
+    {
+        $this->db->select('*');
+        $this->db->from('products');
+        $this->db->join('categories', 'categories.id = products.cat_id');
+        $this->db->join('establishments', 'establishments.id = categories.est_id');
+        $this->db->where('est_id', $etab_id);
+        $count = $this->db->count_all_results();
+        return $count;
+    }
 }

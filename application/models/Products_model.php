@@ -10,8 +10,41 @@ class Products_Model extends CI_Model
         return $query->result();
     }
 
+    public function selectById($prod_id)
+    {
+        $this->db->select('*');
+        $this->db->from('products');
+        $this->db->where('id', $prod_id);
+        $query = $this->db->get();
+        return $query->result()[0];
+    }
+
+    public function selectProdByCat($cat_id)
+    {
+        $this->db->select('categories.name, categories.id, products.cat_id');
+        $this->db->from('products');
+        $this->db->join('categories', 'categories.id = products.cat_id');
+        $this->db->where('categories.id', $cat_id);
+        $this->db->where('products.cat_id', $cat_id);
+        $query = $this->db->get();
+        return $query->result()[0];
+    }
+
     public function add($data)
     {
         $this->db->insert('products', $data);
+    }
+    
+    public function update($prod_id, $data)
+    {
+        $this->db->where('id', $prod_id);
+        $this->db->set($data);
+        $this->db->update('products');
+    }
+
+    public function delete($prod_id)
+    {
+        $this->db->where('id', $prod_id);
+        $this->db->delete('products');
     }
 }

@@ -14,6 +14,7 @@ class Back extends CI_Controller
         }
     }
 
+    ///////////////// CREATE ETAB
     public function create_etabs()
     {
         $data['title'] = 'New Menu - Créer un établissement';
@@ -59,6 +60,8 @@ class Back extends CI_Controller
         }
     }
 
+    ///////////////// AFFICHAGE TABLEAU DE BORD
+
     public function dashboard()
     {
         $etab_id = $this->session->userdata('etab_id');
@@ -66,8 +69,11 @@ class Back extends CI_Controller
         $this->load->model('Establishments_model', 'establishments');
         $data['etab'] = $this->establishments->selectById($etab_id);
         $data['count_cat'] = $this->establishments->countCat($etab_id);
+        $data['count_prod'] = $this->establishments->countProd($etab_id);
         $this->template->load('layout', 'back/etab/dashboard', $data);
     }
+
+    ///////////////// AFFICHAGE EDIT ETAB
 
     public function establishments()
     {
@@ -110,6 +116,8 @@ class Back extends CI_Controller
             redirect('back/establishments');
         }
     }
+
+    ///////////////// CATEGORIES
 
     public function categories()
     {
@@ -192,6 +200,8 @@ class Back extends CI_Controller
         }
     }
 
+    ///////////////// PRODUITS
+
     public function products()
     {
         $etab_id = $this->session->userdata('etab_id');
@@ -237,8 +247,7 @@ class Back extends CI_Controller
             $data = ['cat_id' => $cat_id, 'name' => $nom, 'composition' => $description, 'price' => $prix, 'rank' => $rang];
             $this->products->add($data);
             $prod_id = $this->db->insert_id();
-            // $this->edit_prod($prod_id);
-            echo "produit ajouté";
+            $this->edit_product($prod_id);
         } else {
             $this->session->set_flashdata('error', "Une erreur s'est produite.");
             redirect("back/products");
@@ -261,5 +270,57 @@ class Back extends CI_Controller
         } else {
             redirect('back/add_product');
         }
+    }
+
+    public function edit_product($prod_id)
+    {
+        $etab_id = $this->session->userdata('etab_id');
+        $this->load->model('Categories_model', 'categories');
+        $data['categories'] = $this->categories->selectAll($etab_id);
+        $this->load->model('Products_model', 'products');
+
+        $data['produit'] = $this->products->selectById($prod_id);
+        $data['title'] = 'Votre carte - Produit : ' . $data['produit']->name;
+        $data['category'] = $this->products->selectProdByCat($data['produit']->cat_id);
+
+        // $cat_id = $data['cat']->categorie_id;
+        // $this->load->model('Quantite_model', 'quantite');
+        // $data['quantites'] = $this->quantite->selectAll($cat_id);
+
+        if (count($data['categories']) > 0) {
+            $data['display_categories'] = $this->load->view('back/products/select_cat_edit', $data, true);
+        }
+
+        $this->template->load('layout', 'back/products/edit', $data);
+    }
+
+    public function edit_product_done($prod_id)
+    {
+        $this->load->library('form_validation');
+        $prod_id = $this->input->post('prod_id');
+        $cat_id = $this->input->post('cat_id');
+        $nom = $this->input->post('nom');
+        $description = $this->input->post('description');
+        $prix = $this->input->post('prix');
+        $rang = $this->input->post('rang');
+
+        if ($this->form_validation->run() == true) {
+            $this->load->model('Products_model', 'products');
+            $data = ['name' => $nom, 'composition' => $description, 'price' => $prix, 'rank' => $rang];
+            $this->products->update($prod_id, $data);
+            $this->session->set_flashdata('success_edit', 'Produit modifié');
+            redirect("back/display_products/$cat_id");
+        } else {
+            $this->session->set_flashdata('error', "Une erreur s'est produite.");
+            redirect("back/display_products/$cat_id");
+        }
+    }
+
+    public function delete_product($prod_id)
+    {
+        $this->load->model('Products_model', 'products');
+        $this->products->delete($prod_id);
+        $this->session->set_flashdata('succes_del', "Produit supprimé");
+        redirect("back/products");
     }
 }

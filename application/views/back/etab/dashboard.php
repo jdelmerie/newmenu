@@ -7,19 +7,21 @@
 
 <div class="row">
     <div class="col-4">
-        <a href="/dashboard/editstyle">
-            <div class="border p-5 mb-3 text-center"><i class="fas fa-store-alt"></i></div>
-        </a>
+        <div class="p-4">
+            <a href="/dashboard/editstyle">
+                <div class="border p-5 mb-3 text-center"><i class="fas fa-store-alt"></i></div>
+            </a>
 
-        <h4 class="border p-3 text-center bg-info text-white"><?=ucfirst($etab->name)?></h4>
+            <h4 class="border p-3 text-center bg-info text-white"><?=ucfirst($etab->name)?></h4>
 
-        <address><i class="fas fa-map-marker-alt"></i> Adresse : <?=$etab->adress?> <br> <?=$etab->postal_code?> <?=strtoupper($etab->city)?></address>
+            <address><i class="fas fa-map-marker-alt"></i> Adresse : <?=$etab->adress?> <br> <?=$etab->postal_code?> <?=strtoupper($etab->city)?></address>
 
-        <p><i class="fas fa-phone-alt"></i> Téléphone : <?=$etab->phone?></p>
+            <p><i class="fas fa-phone-alt"></i> Téléphone : <?=$etab->phone?></p>
 
-        <p><i class="fas fa-wifi"></i> Site web : <?=$etab->web_site?></p>
+            <p><i class="fas fa-wifi"></i> Site web : <?=$etab->web_site?></p>
 
-        <span><a href="/back/establishments/">Modifier les informations de contact</a></span>
+            <span><a href="/back/establishments/">Modifier les informations de contact</a></span>
+        </div>
     </div>
 
     <div class="col-6">
@@ -39,8 +41,8 @@
         
         <div class="p-3">
             <h5>Produits</h5>
-            <p>Votre carte contient <??> .. produits.</p>
-            <span><a href="/dashboard/add_product/<?=$etab->id?>">Créer un nouveau produit</a></span>
+            <p>Votre carte contient <?=$count_prod?> produits.</p>
+            <span><a href="/back/add_product/<?=$etab->id?>">Créer un nouveau produit</a></span>
         </div>
     </div>
 </div>
