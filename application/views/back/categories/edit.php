@@ -1,5 +1,5 @@
 <div class="border bg-light p-3 mb-3">
-    <h2>Catégories de produits => <?=ucfirst($category->name)?></h2>
+    <h2>Catégories de produits > <?=ucfirst($category->name)?></h2>
 </div>
 <div class="bg-success p-2 text-white small mb-3">
     Les catégories de produits vous permettent de classer vos produits par groupe (ex : Entrées, Plats, Desserts, etc...).  

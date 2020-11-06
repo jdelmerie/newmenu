@@ -41,15 +41,11 @@
 
         <div class="row">
             <div class="col-6">
-            <label class="font-weight-bold">Prix</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span></div>
-                    <input type="text" name="prix" class="form-control" placeholder="0" aria-label="" aria-describedby="basic-addon1" value="<? echo html_escape($produit->price) ?>">
-                </div>
+                <? echo $displayprice?>
             </div>
 
             <div class="col-6">
-            <label class="font-weight-bold">Ordre</label>
+                <label class="font-weight-bold">Ordre</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-random"></i></span></div>
                     <input type="text" name="rang" class="form-control" placeholder="Ordre d'affichage" aria-label="" aria-describedby="basic-addon1" value="<? echo html_escape($produit->rank) ?>">

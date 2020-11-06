@@ -124,6 +124,7 @@ class Back extends CI_Controller
         $etab_id = $this->session->userdata('etab_id');
         $this->load->model('Categories_model', 'categories');
         $data['categories'] = $this->categories->selectAll($etab_id);
+        // $data['count'] = $this->categories->countByCat($cat_id);
 
         if (count($data['categories']) > 0) {
             $data['title'] = 'Votre carte - Catégories de produits';
@@ -221,6 +222,7 @@ class Back extends CI_Controller
     {
         $etab_id = $this->session->userdata('etab_id');
         $data['title'] = 'Votre carte - Ajouter un produit';
+
         $this->load->model('Categories_model', 'categories');
         $data['categories'] = $this->categories->selectAll($etab_id);
 
@@ -247,6 +249,16 @@ class Back extends CI_Controller
             $data = ['cat_id' => $cat_id, 'name' => $nom, 'composition' => $description, 'price' => $prix, 'rank' => $rang];
             $this->products->add($data);
             $prod_id = $this->db->insert_id();
+
+            $data['product_added'] = $this->products->selectById($prod_id);
+
+            $this->load->model('Pricecat_Model', 'pricecat');
+            $data['catprice'] = $this->pricecat->selectAll($data['product_added']->cat_id);
+
+            if (count($data['catprice']) > 0) {
+                $this->products->activePiceCat($prod_id);
+                $data['displayprice'] = $this->load->view('back/products/price_cat', $data, true);
+            }
             $this->edit_product($prod_id);
         } else {
             $this->session->set_flashdata('error', "Une erreur s'est produite.");
@@ -275,22 +287,28 @@ class Back extends CI_Controller
     public function edit_product($prod_id)
     {
         $etab_id = $this->session->userdata('etab_id');
+
         $this->load->model('Categories_model', 'categories');
         $data['categories'] = $this->categories->selectAll($etab_id);
-        $this->load->model('Products_model', 'products');
 
+        $this->load->model('Products_model', 'products');
         $data['produit'] = $this->products->selectById($prod_id);
         $data['title'] = 'Votre carte - Produit : ' . $data['produit']->name;
         $data['category'] = $this->products->selectProdByCat($data['produit']->cat_id);
 
-        // $cat_id = $data['cat']->categorie_id;
-        // $this->load->model('Quantite_model', 'quantite');
-        // $data['quantites'] = $this->quantite->selectAll($cat_id);
+        $this->load->model('Pricecat_Model', 'pricecat');
+        $data['catprice'] = $this->pricecat->selectAll($data['produit']->cat_id);
 
         if (count($data['categories']) > 0) {
             $data['display_categories'] = $this->load->view('back/products/select_cat_edit', $data, true);
         }
 
+        if (count($data['catprice']) > 0) {
+            $this->products->activePiceCat($prod_id);
+            $data['displayprice'] = $this->load->view('back/products/price_cat', $data, true);
+        } else {
+            $data['displayprice'] = $this->load->view('back/products/price_unique', $data, true);
+        }
         $this->template->load('layout', 'back/products/edit', $data);
     }
 
@@ -323,4 +341,97 @@ class Back extends CI_Controller
         $this->session->set_flashdata('succes_del', "Produit supprimé");
         redirect("back/products");
     }
+
+    ///////////////// QUANTITES
+
+    public function quantity()
+    {
+        $etab_id = $this->session->userdata('etab_id');
+        $this->load->model('Categories_model', 'categories');
+        $data['categories'] = $this->categories->selectAll($etab_id);
+
+        if (count($data['categories']) > 0) {
+            $data['title'] = 'Votre carte - Quantités';
+            $this->template->load('layout', 'back/quantites/all_qty', $data);
+        } else {
+            $this->add_category();
+        }
+    }
+
+    public function add_quantity($cat_id)
+    {
+        $this->load->model('Categories_model', 'categories');
+        $data['categorie'] = $this->categories->selectById($cat_id);
+        $data['title'] = "Votre carte | Quantités : " . $data['categorie']->name;
+        $this->load->model('Pricecat_Model', 'pricecat');
+        $data['quantites'] = $this->pricecat->selectAll($cat_id);
+
+        if (count($data['quantites']) > 0) {
+            $data['displayqte'] = $this->load->view('back/quantites/qty_by_cat', $data, true);
+        } else {
+            $data['displayqte'] = '';
+        }
+
+        $this->template->load('layout', 'back/quantites/add', $data);
+    }
+
+    public function add_quantity_done($cat_id)
+    {
+        $this->add_quantity($cat_id);
+        $this->load->library('form_validation');
+
+        $nom = $this->input->post('nom');
+        $rang = $this->input->post('rang');
+
+        if ($this->form_validation->run() == true) {
+            $this->load->model('Pricecat_Model', 'pricecat');
+            $data = ['name' => $nom, 'rank' => $rang, 'cat_id' => $cat_id];
+            $this->pricecat->add($data);
+            redirect("back/add_quantity/$cat_id");
+        } else {
+            redirect('back/quantity');
+        }
+    }
+
+    public function edit_quantity($cat_id)
+    {
+        $this->load->model('Categories_model', 'categories');
+        $data['categorie'] = $this->categories->selectById($cat_id);
+        $data['title'] = "Votre carte | Quantités : " . $data['categorie']->name;
+        $this->load->model('Pricecat_Model', 'pricecat');
+        $data['quantites'] = $this->pricecat->selectAll($cat_id);
+
+        if (count($data['quantites']) > 0) {
+            $this->template->load('layout', 'back/quantites/edit', $data);
+        } else {
+            $this->session->set_flashdata('no_qty', "Cette catégorie n'a aucune quantité");
+            redirect('back/quantity');
+        }
+    }
+
+    public function edit_single_quantity($qty_id)
+    {
+        $this->load->library('form_validation');
+        $qtyname = $this->input->post('qtyname');
+        $cat_id = $this->input->post('cat_id');
+
+        if ($this->form_validation->run() == true) {
+            $this->load->model('Pricecat_Model', 'pricecat');
+            $data = ['name' => $qtyname];
+            $this->pricecat->update($qty_id, $data);
+            $this->edit_quantity($cat_id);
+            $this->session->set_flashdata('succes_qty', "Quantitée modifiée.");
+        } else {
+            $this->session->set_flashdata('error', "Une erreur s'est produite.");
+        }
+    }
+
+    public function delete_quantity($qty_id)
+    {
+        $this->load->model('Pricecat_Model', 'pricecat');
+        $this->pricecat->delete($qty_id);
+        $this->session->set_flashdata('succes_del', "Quantité supprimée.");
+        redirect('back/quantity');
+    }
+
 }

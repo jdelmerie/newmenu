@@ -228,6 +228,29 @@ $config = [
         ],
     ],
 
+    'back/add_quantity_done' => [
+        [
+            'field' => 'nom',
+            'label' => 'nom',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'rang',
+            'label' => 'rang',
+            'rules' => '',
+        ],
+    ],
+
+    'back/edit_single_quantity' => [
+        [
+            'field' => 'qtyname',
+            'label' => 'qtyname',
+            'rules' => 'required',
+        ],
+    ],
+    
+
 
 
 ];

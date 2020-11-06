@@ -47,4 +47,11 @@ class Products_Model extends CI_Model
         $this->db->where('id', $prod_id);
         $this->db->delete('products');
     }
+
+    public function activePiceCat($prod_id)
+    {
+        $this->db->where('id', $prod_id);
+        $this->db->set(['prices_categories' => 1]);
+        $this->db->update('products');
+    }
 }

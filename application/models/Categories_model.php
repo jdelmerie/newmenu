@@ -38,4 +38,14 @@ class Categories_model extends CI_Model
         }
         return false;
     }
+
+    public function countByCat($cat_id)
+    {
+        $this->db->select('*');
+        $this->db->from('products');
+        $this->db->join('categories', 'categories.id = products.cat_id');
+        $this->db->where('cat_id', $cat_id);
+        $count = $this->db->count_all_results();
+        return $count;
+    }
 }

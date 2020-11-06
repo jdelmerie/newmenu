@@ -18,7 +18,8 @@ class Template {
                 '/back/establishments' => 'Etablissement', 
                 '/back/customize' => 'Personnalisation', 
                 '/back/categories' => 'Catégories de produits', 
-                '/back/products' => 'Produits', 
+				'/back/products' => 'Produits',
+				'/back/quantity' => "Quantités", 
 				'/welcome/logout' => 'Déconnexion'));		
 			return $this->CI->load->view($template, $this->template_data, $return);
 		}
