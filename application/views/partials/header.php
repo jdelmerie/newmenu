@@ -14,7 +14,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 <div class="bg-primary">
 	<div class="container bg-primary">
-		<h1 class="text-center p-4 display-3"><a class="text-decoration-none text-white" href="http://newmenu.local/">NEW MENU</a></h1>
+		<h1 class="text-center p-4 display-3"><a class="text-decoration-none text-white" href="<? echo base_url() ?>">NEW MENU</a></h1>
 	</div>
 </div>
 

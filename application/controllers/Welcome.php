@@ -62,7 +62,7 @@ class Welcome extends CI_Controller
     public function sendmail($user_id, $activation_hash, $email)
     {
         // TODOS : urlencode les mpd 
-        $lien_validation = "<a href='http://newmenu.local/welcome/validation?id=$user_id&activation=$activation_hash'>ICI</a>";
+        $lien_validation = "<a href=" .base_url("/welcome/validation?id=$user_id&activation=$activation_hash").">ICI</a>";
         $objet = 'Création de compte pour NewMenu';
         $message = "Pour valider votre compte, cliquez sur le lien : $lien_validation";
 

@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="m-5">
+    <div class="m-5 col-6">
         <h3>Connexion</h3>
         <h4>Connectez-vous à votre interface admin</h4>
         <br>
