@@ -5,9 +5,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container">
 
 	<div class="m-5 text-center">
-		<h2>Présentation</h2>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, doloribus rem exercitationem ullam fuga eos quod recusandae odit atque eaque, modi dolores soluta quisquam molestiae, blanditiis alias possimus ratione numquam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, doloribus rem exercitationem ullam fuga eos quod recusandae odit atque eaque, modi dolores soluta quisquam molestiae, blanditiis alias possimus ratione numquam.
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, doloribus rem exercitationem ullam fuga eos quod recusandae odit atque eaque, modi dolores soluta quisquam molestiae, blanditiis alias possimus ratione numquam.
+		<div class="row">
+			<div class="col-">
+				<h2>Présentation</h2>
+				<br>
+				<p class="">Ce site représente un TP réalisé avec le framework Code Igniter 3. Il s'agit d'un CMS pour permettre aux restaurateurs de créer une carte numérique. Pour essayer, vous pouvez vous inscrire.</p>
+			</div>
+
+			<!-- <div class="col-6">
+				<img src="" alt="">
+			</div> -->
+
+		</div>
+
+
 	</div>
 
 	<div class="row m-5 text-center">
