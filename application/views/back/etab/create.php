@@ -4,7 +4,7 @@
     </div>
     <hr>
     <div class="bg-success p-2 text-white small mb-3">
-        Ce formulaire correspond aux informations de base de votre établissement telles que son nom, son adresse, etc... L'adresse web d'accès à votre carte est très importante.
+        Ce formulaire vous permet de créer votre établissement avant d'accéder au tableau de bord et personnabliser votre carte.
     </div>
 
     <form action="<?echo base_url('/back/add_etabs') ?>" method="POST">

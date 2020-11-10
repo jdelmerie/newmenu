@@ -20,7 +20,7 @@
 <?}?>
 <div class="border bg-light p-4">
 
-    <table class="table text-center">
+    <table class="table">
         <thead class="thead-light">
             <tr>
                 <th scope="col">ORDRE D'AFFICHAGE</th>
@@ -37,7 +37,6 @@
                         <form action="<? echo base_url("/back/edit_single_quantity/$quantity->id") ?>" method="POST">
                             <input type="hidden" name="cat_id" value="<?=$categorie->id?>">
                             <input type="text" class="form-control" value="<?=$quantity->name?>" name="qtyname" aria-describedby="button-addon2">
-                            <!-- <input type="submit" class="btn btn-primary" value="Modifier"> -->
                             <div class="input-group-append"><a class="btn btn-primary" href="/back/edit_single_quantity/<?=$quantity->id?>">Modifier</a></div>
                         </form>
                     </div>

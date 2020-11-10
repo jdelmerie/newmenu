@@ -45,13 +45,14 @@ class Products_Model extends CI_Model
     public function delete($prod_id)
     {
         $this->db->where('id', $prod_id);
-        $this->db->delete('products');
+        $this->db->where(['prop_id', $prod_id]);
+        $this->db->delete('products, link_prod_prices');
     }
 
     public function activePiceCat($prod_id)
     {
         $this->db->where('id', $prod_id);
-        $this->db->set(['prices_categories' => 1]);
+        $this->db->set(['prices_categories' => 1, 'price' => 0]);
         $this->db->update('products');
     }
 }

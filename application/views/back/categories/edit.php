@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-8">
                 <label class="font-weight-bold">Description</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-info-circle"></i></span></div>
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-                <div class="row">
+        <div class="row">
             <div class="col-4">
                 <label class="font-weight-bold">Ordre</label>
                 <div class="input-group mb-3">
@@ -34,6 +34,7 @@
                 </div>
             </div>
         </div>
+        <hr>
 
         <input type="submit" class="btn btn-primary" value="Modifier cette catégorie de produits">
         <a class="btn btn-warning" href="">Supprimer cette catégorie de produits</a>

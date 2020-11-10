@@ -4,12 +4,13 @@
 
 <div class="border bg-light p-4">
 
-
 <div class="row">
     <div class="col-4">
         <div class="p-4">
-            <a href="/dashboard/editstyle">
-                <div class="border p-5 mb-3 text-center"><i class="fas fa-store-alt"></i></div>
+            <a href="/back/customize">
+                <? if (isset($logo)){?>
+                    <div class="text-center"><img src="<?php  echo base_url("/uploads/logos/$logo->logo") ?>" width="250px" height="250px"/></div>
+                <?}?>
             </a>
 
             <h4 class="border p-3 text-center bg-info text-white"><?=ucfirst($etab->name)?></h4>
@@ -34,13 +35,13 @@
         </div>
         
         <div class="p-3">
-            <h5>Catégories de produits</h5>
+            <h5><i class="fas fa-folder-plus"></i>&nbsp;Catégories de produits</h5>
             <p>Votre carte contient <?=$count_cat?> catégories.</p>
             <span><a href="/back/newcategory/">Créer une nouvelle catégorie</a></span>
         </div>
         
         <div class="p-3">
-            <h5>Produits</h5>
+            <h5><i class="fas fa-pizza-slice"></i>&nbsp;Produits</h5>
             <p>Votre carte contient <?=$count_prod?> produits.</p>
             <span><a href="/back/add_product/<?=$etab->id?>">Créer un nouveau produit</a></span>
         </div>

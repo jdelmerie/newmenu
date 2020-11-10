@@ -7,16 +7,16 @@
 
 <div class="border bg-light p-4">
 
-    <form action="<? echo base_url("/back/edit_product_done/$produit->id") ?>" method="POST">
+    <form action="<?echo base_url("/back/edit_product_done/$produit->id") ?>" method="POST">
 
     <input type="hidden" name="prod_id" value="<?=$produit->id?>">
     <input type="hidden" name="cat_id" value="<?=$produit->cat_id?>">
-    
+
         <div class="row">
             <div class="col-6">
                 <div>
                     <p class="font-weight-bold">Catégorie de produits *</p>
-                    <? echo $display_categories; ?>
+                    <?echo $display_categories; ?>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <label class="font-weight-bold">Nom du produit *</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-pizza-slice"></i></span></div>
-                    <input type="text" name="nom" class="form-control" placeholder="Nom du produits" aria-label="" aria-describedby="basic-addon1" value="<? echo html_escape($produit->name) ?>">
+                    <input type="text" name="nom" class="form-control" placeholder="Nom du produits" aria-label="" aria-describedby="basic-addon1" value="<?echo html_escape($produit->name) ?>">
                 </div>
             </div>
 
@@ -34,21 +34,48 @@
             <label class="font-weight-bold">Description</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-info-circle"></i></span></div>
-                    <input type="text" name="description" class="form-control" placeholder="La composition ou la description du produit" aria-label="" aria-describedby="basic-addon1" value="<? echo html_escape($produit->composition) ?>">
+                    <input type="text" name="description" class="form-control" placeholder="La composition ou la description du produit" aria-label="" aria-describedby="basic-addon1" value="<?echo html_escape($produit->composition) ?>">
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-6">
-                <? echo $displayprice?>
+                <label class="font-weight-bold">Prix</label>
+
+
+                <div style="<?echo $display_unique_price ?>" >
+                    <!-- PRIX UNIQUE -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span></div><input type="text" name="prix" class="form-control" placeholder="0" aria-label="" aria-describedby="basic-addon1" value="<?echo html_escape($produit->price) ?>">
+                    </div>
+                </div>
+
+                <div style="<?echo $displayprice_cat ?>">
+                    <!-- PRIX PAR TYPE -->
+                    <?foreach ($catprices as $catprice) {?>
+                    <div class="input-group">
+                        <span style="width: 20%" class="input-group-text"><?=ucfirst($catprice->name)?></span>
+                        <input name="pricecat[]" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" 
+                        value="<?
+                        foreach($prod_prices as $prod_price){
+                            if ($prod_price->prices_id == $catprice->id) {
+                                echo $prod_price->price;
+                            }
+                        }
+                        ?>">
+                        <input type="hidden" name="catprice_id[]" value="<?=$catprice->id?>">
+                        <div class="input-group-append"><span class="input-group-text"><i class="fas fa-dollar-sign"></i></span></div>
+                    </div>
+                    <?}?>
+                </div>
             </div>
 
             <div class="col-6">
                 <label class="font-weight-bold">Ordre</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-random"></i></span></div>
-                    <input type="text" name="rang" class="form-control" placeholder="Ordre d'affichage" aria-label="" aria-describedby="basic-addon1" value="<? echo html_escape($produit->rank) ?>">
+                    <input type="text" name="rang" class="form-control" placeholder="Ordre d'affichage" aria-label="" aria-describedby="basic-addon1" value="<?echo html_escape($produit->rank) ?>">
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@
 <table class="table">
     <thead class="thead-light">
         <tr>
+            <th scope="col"></th>
             <th scope="col" class="text-center">ORDRE D'AFFICHAGE</th>
             <th scope="col">CATÉGORIES DE PRODUITS</th>
             <th scope="col"></th>
@@ -15,6 +16,7 @@
         <?foreach ($categories as $category) {?>
         <tbody>
             <tr>
+                <td></td>
                 <td class="text-center"><?=$category->rank?></td>
                 <td><a href=""><?=ucfirst($category->name)?></a></td>
                 <td class="text-center">

@@ -17,9 +17,10 @@
             <button type="submit" class="btn btn-primary">Se connecter</button>
             </form>
             <hr>
+            
 <?if ($this->session->flashdata('success_valid')) {?>
 <div class="alert alert-success" role="alert">
-  <?echo $this->session->flashdata('success_valid') ?>
+<?echo $this->session->flashdata('success_valid') ?>
 </div>
 <?} else if ($this->session->flashdata('success_signin')) {?>
 <div class="alert alert-success" role="alert">

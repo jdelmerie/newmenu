@@ -14,24 +14,28 @@
 
   <div class="main">
     <div class="row">
-        <div class="col-2 bg-dark">
+        <div class="col-xl-3 bg-dark ">
+          <div class="container-fluid">
             <h1 class="text-center text-white display-4">NEW MENU</h1>
-            <ul class="nav flex-column mt-5 mb-5 text-center">
-                <?foreach ($nav_list as $route => $nav_item) {?>
-                  <a class="btn btn-primary btn-sm m-2" href="<?=$route?>"><?=$nav_item?></a>
-                <?}?>
-            </ul>
+              <ul class="nav flex-column my-5">
+                  <?foreach ($nav_list as $route => $nav_item) {?>
+                    <a class="btn btn-primary m-3" href="<?=$route?>"><?=$nav_item?></a>
+                  <?}?>
+              </ul>
+            </div>
         </div>
 
-        <div class="col-10">
-          <div class="container"><?=$contents?></div>
+        <div class="col-xl-9">
+          <div class="container-fluid"><?=$contents?></div>
+            <footer class="text-center m-5">
+                <p>&copy; Delmerie JOHN ROSE - <? echo date('Y')?></p>
+           </footer>
         </div>
       </div>
+</div>
+</div>
 
-      <footer class="text-center m-5">
-          &copy; Delmerie JOHN ROSE - 2020
-      </footer>
-  </div>
+
 </body>
 
 </html>

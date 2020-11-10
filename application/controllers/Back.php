@@ -70,6 +70,8 @@ class Back extends CI_Controller
         $data['etab'] = $this->establishments->selectById($etab_id);
         $data['count_cat'] = $this->establishments->countCat($etab_id);
         $data['count_prod'] = $this->establishments->countProd($etab_id);
+        $this->load->model('Customisation_model', 'customisation');
+        $data['logo'] = $this->customisation->select($etab_id);
         $this->template->load('layout', 'back/etab/dashboard', $data);
     }
 
@@ -253,12 +255,12 @@ class Back extends CI_Controller
             $data['product_added'] = $this->products->selectById($prod_id);
 
             $this->load->model('Pricecat_Model', 'pricecat');
-            $data['catprice'] = $this->pricecat->selectAll($data['product_added']->cat_id);
+            $data['catprices'] = $this->pricecat->selectAll($data['product_added']->cat_id);
 
-            if (count($data['catprice']) > 0) {
+            if (count($data['catprices']) > 0) {
                 $this->products->activePiceCat($prod_id);
-                $data['displayprice'] = $this->load->view('back/products/price_cat', $data, true);
             }
+
             $this->edit_product($prod_id);
         } else {
             $this->session->set_flashdata('error', "Une erreur s'est produite.");
@@ -277,6 +279,8 @@ class Back extends CI_Controller
 
         if (count($data['produits']) > 0) {
             $data['categories'] = $this->categories->selectAll($etab_id);
+            $this->load->model('Link_prod_prices_model', 'link');
+            $data['prod_prices'] = $this->link->getPriceByProd($cat_id);
             $data['display_produits'] = $this->load->view('back/products/show_prod', $data, true);
             $this->template->load('layout', 'back/products/all_prod', $data);
         } else {
@@ -297,18 +301,24 @@ class Back extends CI_Controller
         $data['category'] = $this->products->selectProdByCat($data['produit']->cat_id);
 
         $this->load->model('Pricecat_Model', 'pricecat');
-        $data['catprice'] = $this->pricecat->selectAll($data['produit']->cat_id);
+        $data['catprices'] = $this->pricecat->selectAll($data['produit']->cat_id);
 
         if (count($data['categories']) > 0) {
             $data['display_categories'] = $this->load->view('back/products/select_cat_edit', $data, true);
         }
 
-        if (count($data['catprice']) > 0) {
+        if (count($data['catprices']) > 0) {
             $this->products->activePiceCat($prod_id);
-            $data['displayprice'] = $this->load->view('back/products/price_cat', $data, true);
+            $data['displayprice_cat'] = 'display: block;';
+            $data['display_unique_price'] = 'display: none;';
+
+            $this->load->model('Link_prod_prices_model', 'link');
+            $data['prod_prices'] = $this->link->selectAll($prod_id);
         } else {
-            $data['displayprice'] = $this->load->view('back/products/price_unique', $data, true);
+            $data['display_unique_price'] = 'display : block;';
+            $data['displayprice_cat'] = 'display : none;';
         }
+
         $this->template->load('layout', 'back/products/edit', $data);
     }
 
@@ -322,10 +332,40 @@ class Back extends CI_Controller
         $prix = $this->input->post('prix');
         $rang = $this->input->post('rang');
 
+        $pricecats = $this->input->post("pricecat");
+        $catprices_id = $this->input->post("catprice_id");
+
         if ($this->form_validation->run() == true) {
             $this->load->model('Products_model', 'products');
             $data = ['name' => $nom, 'composition' => $description, 'price' => $prix, 'rank' => $rang];
             $this->products->update($prod_id, $data);
+
+            $this->load->model('Link_prod_prices_model', 'link');
+            $data['prod_prices'] = $this->link->selectAll($prod_id);
+
+            print_r($pricecats);
+            print_r($catprices_id);
+
+            if (count($data['prod_prices']) > 0) {
+                $i = 0;
+                foreach ($pricecats as $row) {
+                    foreach ($catprices_id as $row) {
+                        $datakey = ['prod_id' => $prod_id, 'prices_id' => $catprices_id[$i]];
+                        $data3 = ['price' => $pricecats[$i]];
+                    }
+                    $i++;
+                    $this->link->update($data3, $datakey);
+                };
+            } else {
+                $i = 0;
+                foreach ($pricecats as $row) {
+                    foreach ($catprices_id as $row) {
+                        $data2 = ['prod_id' => $prod_id, 'price' => $pricecats[$i], 'prices_id' => $catprices_id[$i]];
+                    }
+                    $i++;
+                    $this->link->add($data2);
+                };
+            }
             $this->session->set_flashdata('success_edit', 'Produit modifié');
             redirect("back/display_products/$cat_id");
         } else {
@@ -432,6 +472,64 @@ class Back extends CI_Controller
         $this->pricecat->delete($qty_id);
         $this->session->set_flashdata('succes_del', "Quantité supprimée.");
         redirect('back/quantity');
+    }
+
+    ///////////////// PERSONNALISATION
+
+    public function customize()
+    {
+        $data['title'] = 'Votre carte - Personnalisation';
+        $etab_id = $this->session->userdata('etab_id');
+        $this->load->model('Customisation_model', 'customisation');
+        $data['etab_perso'] = $this->customisation->select($etab_id);      
+        $this->template->load('layout', 'back/etab/customization', $data);
+    }
+
+    public function upload_logo()
+    {
+        $this->load->helper(array('form'));
+        $data['title'] = 'Votre carte - Personnalisation';
+        $etab_id = $this->session->userdata('etab_id');
+
+        $config['upload_path'] = './uploads/logos/';
+        $config['allowed_types'] = 'jpg|png';
+        $config['file_name'] = "logo_" . $etab_id;
+        $config['overwrite'] = true;
+        $config['max_size'] = 8;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('logo')) {
+            $data['error'] = $this->upload->display_errors();
+            $this->session->set_flashdata('error_upload', $data['error']);
+            redirect('back/customize');
+        } else {
+            $data['logo'] = $this->upload->data();
+            $logo = $data['logo']['file_name'];
+
+            $data_logo = ['est_id' => $etab_id, 'logo' => $logo];
+            $this->load->model('Customisation_model', 'customisation');
+            $this->customisation->add_logo($data_logo);
+        }
+
+        $this->template->load('layout', 'back/etab/customization', $data);
+    }
+
+    public function presentation_etab()
+    {
+        $this->load->library('form_validation');
+
+        $etab_id = $this->session->userdata('etab_id');
+        $presentation = $this->input->post('presentation');
+
+        if ($this->form_validation->run() == true){
+            $this->load->model('Customisation_model', 'customisation');
+            $data = ['presentation' => $presentation];
+            $this->customisation->presentation($etab_id, $data);
+            redirect('back/customize');
+        } 
     }
 
 }

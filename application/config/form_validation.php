@@ -226,6 +226,18 @@ $config = [
             'label' => 'rang',
             'rules' => '',
         ],
+
+        [
+            'field' => 'catprice_id',
+            'label' => 'catprice_id',
+            'rules' => 'integer',
+        ],
+
+        [
+            'field' => 'pricecat',
+            'label' => 'pricecat',
+            'rules' => 'integer',
+        ],
     ],
 
     'back/add_quantity_done' => [
@@ -247,6 +259,14 @@ $config = [
             'field' => 'qtyname',
             'label' => 'qtyname',
             'rules' => 'required',
+        ],
+    ],
+
+    'back/presentation_etab' => [
+        [
+            'field' => 'presentation',
+            'label' => 'presentation',
+            'rules' => 'trim|max_length[1000]',
         ],
     ],
     

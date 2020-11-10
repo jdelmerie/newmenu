@@ -18,7 +18,7 @@
 
 <form action="<?echo base_url('/back/edit_etabs') ?>" method="POST">
     <div class="row">
-        <div class="col-5">
+        <div class="col-6">
             <label class="font-weight-bold">Nom de l'établissement *</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-store-alt"></i></span></div>
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="col-5">
+        <div class="col-6">
             <label class="font-weight-bold">Adresse web d'accès à votre carte *</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"> </i>&nbsp;<?echo base_url() ?></span></div>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="row">
-        <div class="col-5">
+        <div class="col-6">
             <label class="font-weight-bold">Numéro et nom de la rue *</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marker-alt"></i></span></div>
@@ -62,7 +62,7 @@
     </div>
 
     <div class="row">
-        <div class="col-5">
+        <div class="col-6">
         <label class="font-weight-bold">Téléphone *</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></span></div>
@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <div class="col-5">
+        <div class="col-6">
         <label class="font-weight-bold">Site web *</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-wifi"></i></span></div>
@@ -78,7 +78,7 @@
             </div>
         </div>
     </div>
-
+    <hr>
     <button type="submit" class="btn btn-primary">Enregistrer les informations de l'établissement</button>
 </form>
 <?if ($this->session->flashdata('error')) {?>
