@@ -255,7 +255,7 @@ class Back extends CI_Controller
 
             $data['product_added'] = $this->products->selectById($prod_id);
 
-            $this->load->model('PriceByCat_Model', 'pricecat');
+            $this->load->model('PriceByCat_model', 'pricecat');
             $data['catprices'] = $this->pricecat->selectAll($data['product_added']->cat_id);
 
             if (count($data['catprices']) > 0) {
@@ -301,7 +301,7 @@ class Back extends CI_Controller
         $data['title'] = 'Votre carte - Produit : ' . $data['produit']->name;
         $data['category'] = $this->products->selectProdByCat($data['produit']->cat_id);
 
-        $this->load->model('PriceByCat_Model', 'pricecat');
+        $this->load->model('PriceByCat_model', 'pricecat');
         $data['catprices'] = $this->pricecat->selectAll($data['produit']->cat_id);
 
         if (count($data['categories']) > 0) {
@@ -451,7 +451,7 @@ class Back extends CI_Controller
         $this->load->model('Categories_model', 'categories');
         $data['categorie'] = $this->categories->selectById($cat_id);
         $data['title'] = "Votre carte | Quantités : " . $data['categorie']->name;
-        $this->load->model('PriceByCat_Model', 'pricecat');
+        $this->load->model('PriceByCat_model', 'pricecat');
         $data['quantites'] = $this->pricecat->selectAll($cat_id);
 
         if (count($data['quantites']) > 0) {
@@ -472,7 +472,7 @@ class Back extends CI_Controller
         $rang = $this->input->post('rang');
 
         if ($this->form_validation->run() == true) {
-            $this->load->model('PriceByCat_Model', 'pricecat');
+            $this->load->model('PriceByCat_model', 'pricecat');
             $data = ['name' => $nom, 'rank' => $rang, 'cat_id' => $cat_id];
             $this->pricecat->add($data);
             redirect("back/add_quantity/$cat_id");
@@ -486,7 +486,7 @@ class Back extends CI_Controller
         $this->load->model('Categories_model', 'categories');
         $data['categorie'] = $this->categories->selectById($cat_id);
         $data['title'] = "Votre carte | Quantités : " . $data['categorie']->name;
-        $this->load->model('PriceByCat_Model', 'pricecat');
+        $this->load->model('PriceByCat_model', 'pricecat');
         $data['quantites'] = $this->pricecat->selectAll($cat_id);
 
         if (count($data['quantites']) > 0) {
@@ -504,7 +504,7 @@ class Back extends CI_Controller
         $cat_id = $this->input->post('cat_id');
 
         if ($this->form_validation->run() == true) {
-            $this->load->model('PriceByCat_Model', 'pricecat');
+            $this->load->model('PriceByCat_model', 'pricecat');
             $data = ['name' => $qtyname];
             $this->pricecat->update($qty_id, $data);
             $this->edit_quantity($cat_id);
@@ -516,7 +516,7 @@ class Back extends CI_Controller
 
     public function delete_quantity($qty_id)
     {
-        $this->load->model('PriceByCat_Model', 'pricecat');
+        $this->load->model('PriceByCat_model', 'pricecat');
         $this->pricecat->delete($qty_id);
         $this->session->set_flashdata('succes_del', "Quantité supprimée.");
         redirect('back/quantity');

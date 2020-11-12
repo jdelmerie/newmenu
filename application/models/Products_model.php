@@ -1,5 +1,5 @@
 <?
-class Products_Model extends CI_Model
+class Products_model extends CI_Model
 {
     public function selectAll($cat_id)
     {
