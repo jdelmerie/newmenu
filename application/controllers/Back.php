@@ -308,17 +308,17 @@ class Back extends CI_Controller
             $data['display_categories'] = $this->load->view('back/products/select_cat_edit', $data, true);
         }
 
-        // if (count($data['catprices']) > 0) {
-        //     $this->products->activePiceCat($prod_id);
-        //     $data['displayprice_cat'] = 'style="display: block;"';
-        //     $data['display_unique_price'] = 'style="display: none;"';
+        if (count($data['catprices']) > 0) {
+            $this->products->activePiceCat($prod_id);
+            $data['displayprice_cat'] = 'style="display: block;"';
+            $data['display_unique_price'] = 'style="display: none;"';
 
-        //     $this->load->model('Link_prod_prices_model', 'link');
-        //     $data['prod_prices'] = $this->link->selectAll($prod_id);
-        // } else {
-        //     $data['display_unique_price'] = 'style="display : block;"';
-        //     $data['displayprice_cat'] = 'style="display : none;"';
-        // }
+            $this->load->model('Link_prod_prices_model', 'link');
+            $data['prod_prices'] = $this->link->selectAll($prod_id);
+        } else {
+            $data['display_unique_price'] = 'style="display : block;"';
+            $data['displayprice_cat'] = 'style="display : none;"';
+        }
 
         $this->template->load('layout_back', 'back/products/edit', $data);
 
