@@ -48,7 +48,7 @@
                     </li>
                 <?}?>
             <?} else {?>
-                <i>Vous n'avez pas aucune catégorie renseignée.</i>
+                <i>Vous n'avez aucune catégorie renseignée.</i>
             <?}?>   
         </ul>
     </div>
