@@ -24,7 +24,7 @@
             <td><?=$produit->composition?></td>
             <td>
                 <!-- PRIX PAR TYPE -->
-                <?if (isset($prod_prices)) {?>
+                <?if (count($prod_prices) > 0) {?>
 
                     <? foreach($prod_prices as $prod_price) {?>
                         <li style="list-style: none;">
@@ -34,7 +34,6 @@
                         </li>
                     <?}?>
                 <?} else {?>
-                    
                 <!-- PRIX UNIQUE -->
                     <span><?=$produit->price?> €</span>
                 <?}?>
@@ -47,3 +46,4 @@
     </tbody>
     <?}?>
 </table>
+

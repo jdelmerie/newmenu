@@ -287,6 +287,8 @@ class Back extends CI_Controller
         } else {
             redirect('back/add_product');
         }
+
+        // print_r($data);
     }
 
     public function edit_product($prod_id)
