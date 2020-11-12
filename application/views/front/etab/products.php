@@ -2,7 +2,7 @@
     <p class="text-center font-weight-bold text-white bg-info lead p-3"><?=ucfirst($category->name)?></p>
 </div>
 
-<? if (isset($produits)) {?>
+<? if (count($produits) > 0) {?>
 <ul class="list-group list-group-flush">
     <? foreach($produits as $produit) {?>
         <a href="<? echo base_url("etab/product/$produit->id?etab_id=$etab->id") ?>">
@@ -35,6 +35,6 @@
         </a>
     <?}?>
 </ul>
-<? } else {
-    echo "<i>Aucun produits renseignés pour l'instant</i>";
-} ?>
+<? } else {?>
+    <p class="text-center"><i>Aucun produit renseignés pour l'instant</i></p>
+<? }?>
