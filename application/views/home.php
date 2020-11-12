@@ -6,16 +6,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="m-5 text-center">
 		<div class="row">
-			<div class="col-">
+			<div>
 				<h2>Présentation</h2>
 				<br>
-				<p class="">Ce site représente un TP réalisé avec le framework Code Igniter 3. Il s'agit d'un CMS pour permettre aux restaurateurs de créer une carte numérique. Pour essayer, vous pouvez vous inscrire.</p>
+				<p class="">Ce site représente un TP réalisé avec le framework Code Igniter 3. Il s'agit d'un CMS pour permettre aux restaurateurs de créer une carte numérique. Découvrez ce qui est possible.</p>
+				<hr>
+
+				<h4>Démonstations avec un restaurant fictif : <?=ucfirst($etab_demo->name)?></h4><br>
+				<a href="<? echo base_url("/etab/display/$etab_demo->id") ?>" class="btn btn-success" target="_blank">Démo écran normale</a>
+
+				<hr>
+				<p>Pour essayer, vous pouvez vous inscrire.</p>
 			</div>
-
-			<!-- <div class="col-6">
-				<img src="" alt="">
-			</div> -->
-
 		</div>
 
 

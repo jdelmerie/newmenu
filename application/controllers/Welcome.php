@@ -7,7 +7,10 @@ class Welcome extends CI_Controller
 
     public function index()
     {
+        $etab_demo_id = 8;
         $data['title'] = "NEW MENU";
+        $this->load->model('Establishments_model', 'establishments');
+        $data['etab_demo'] = $this->establishments->selectById($etab_demo_id);
 
         $this->load->view('partials/header', $data);
         $this->load->view('home');
