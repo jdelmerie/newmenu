@@ -31,7 +31,7 @@
             <? if ($etab->web_site == ''){
                 echo "Non renseigné"; 
             } else {
-                echo $etab->phone;
+                echo $etab->web_site;
             }?>
             </p>
 
