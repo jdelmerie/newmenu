@@ -61,7 +61,7 @@
     <div class="pt-3 pb-3">
         <label class="font-weight-bold">Présentation de votre établissement</label><br>
         <form action="<? echo base_url('back/presentation_etab') ?>" method="post">
-            <textarea name="presentation" id="" cols="130" rows="10">
+            <textarea name="presentation" cols="130" rows="10">
                 <? if (isset($etab_perso)){
                         echo html_escape($etab_perso->presentation);
                     } else {
