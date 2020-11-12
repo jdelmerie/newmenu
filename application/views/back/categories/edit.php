@@ -36,6 +36,18 @@
         </div>
         <hr>
 
+        <!-- <div>
+            <label class="font-weight-bold">Image associée</label>
+                <div>
+                    <? 
+                    // foreach ($icons as $k => $icon) {?>
+                        <img name="" src="<? 
+                        // echo base_url("/assets/img/icons/$icon") ?>" width="75px" class="border" style="cursor: pointer;">
+                    <?
+                // }?>
+                </div>
+        </div> -->
+        <!-- <hr> -->
         <input type="submit" class="btn btn-primary" value="Modifier cette catégorie de produits">
         <a class="btn btn-warning" href="">Supprimer cette catégorie de produits</a>
     </form>

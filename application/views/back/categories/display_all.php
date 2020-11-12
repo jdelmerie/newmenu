@@ -8,7 +8,7 @@
     <thead class="thead-light">
         <tr>
             <th scope="col"></th>
-            <th scope="col" class="text-center">ORDRE D'AFFICHAGE</th>
+            <th scope="col" class="text-center">ID</th>
             <th scope="col">CATÉGORIES DE PRODUITS</th>
             <th scope="col"></th>
         </tr>
@@ -16,9 +16,11 @@
         <?foreach ($categories as $category) {?>
         <tbody>
             <tr>
-                <td></td>
-                <td class="text-center"><?=$category->rank?></td>
-                <td><a href=""><?=ucfirst($category->name)?></a></td>
+                <? if ($category->image == 0) {?>
+                <td><img src="<? echo base_url('/assets/img/icons/4-plate.png')?>" width="50px"></td>
+                <?}?>
+                <td class="text-center"><?=$category->id?></td>
+                <td><a href="/back/edit_category/<?=$category->id?>"><?=ucfirst($category->name)?></a></td>
                 <td class="text-center">
                     <a class="btn btn-primary" href="/back/edit_category/<?=$category->id?>">Modifier</a>
                     <a class="btn btn-warning" href="/back/delete_category/<?=$category->id?>">Supprimer</a>

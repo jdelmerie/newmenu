@@ -35,4 +35,16 @@ class Link_prod_prices_model extends CI_Model
         return $query->result();
     }
 
+    public function getPriceByProdFront($prod_id)
+    {
+        $this->db->select('link_prod_prices.prod_id as linkprodid, prices_id, link_prod_prices.price, prices_categories.name as pricename, products.name as prodname');
+        $this->db->from('link_prod_prices');
+        $this->db->join('products', 'link_prod_prices.prod_id = products.id');
+        $this->db->join('prices_categories', 'link_prod_prices.prices_id = prices_categories.id');
+        $this->db->where('products.id', $prod_id);
+        $this->db->group_by('link_prod_prices.prod_id, prices_id, link_prod_prices.price, prodname'); 
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }

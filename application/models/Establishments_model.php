@@ -19,6 +19,17 @@ class Establishments_model extends CI_Model
         return $query->result()[0];
     }
 
+    public function selectUrl($etab_url)
+    {
+        $this->db->select('id, name, url');
+        $this->db->from('establishments');
+        $this->db->where('url', $etab_url);
+        $query = $this->db->get();
+        if (count($query->result()) > 0){
+            return $query->result()[0];
+        }
+    }
+
     public function add($data)
     {
         $this->db->insert('establishments', $data);

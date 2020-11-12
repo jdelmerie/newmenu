@@ -82,13 +82,13 @@ $config = [
         [
             'field' => 'telephone',
             'label' => 'telephone',
-            'rules' => 'required|numeric',
+            'rules' => 'numeric',
         ],
 
         [
             'field' => 'site',
             'label' => 'site',
-            'rules' => 'required|valid_url',
+            'rules' => 'valid_url',
         ],
     ],
 
@@ -126,13 +126,13 @@ $config = [
         [
             'field' => 'telephone',
             'label' => 'telephone',
-            'rules' => 'required|numeric',
+            'rules' => 'numeric',
         ],
 
         [
             'field' => 'site',
             'label' => 'site',
-            'rules' => 'required|valid_url',
+            'rules' => 'valid_url',
         ],
     ],
 
