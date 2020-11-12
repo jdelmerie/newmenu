@@ -1,5 +1,5 @@
 <?
-class Pricecat_Model extends CI_Model
+class PriceByCat_Model extends CI_Model
 {
     public function selectAll($cat_id)
     {
