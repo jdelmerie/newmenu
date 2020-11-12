@@ -36,6 +36,7 @@
             </div>
         </div>
         <hr>
+      
         <button type="submit" class="btn btn-primary">Créer une catégorie de produits</button>
     </form>
 </div>

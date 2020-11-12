@@ -29,7 +29,7 @@
         <div class="col-6">
             <label class="font-weight-bold">Adresse web d'accès à votre carte *</label>
             <div class="input-group mb-3">
-                <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"> </i>&nbsp;<?echo base_url() ?></span></div>
+                <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"> </i>&nbsp;<?echo base_url('/carte/') ?></span></div>
                 <input type="text" name="url" class="form-control" placeholder="votreetablissement" aria-label="" value="<?echo html_escape($etab->url)?>" aria-describedby="basic-addon1">
             </div>
         </div>   
@@ -63,7 +63,7 @@
 
     <div class="row">
         <div class="col-6">
-        <label class="font-weight-bold">Téléphone *</label>
+        <label class="font-weight-bold">Téléphone</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></span></div>
                 <input type="text" name="telephone" class="form-control" placeholder="Téléphone" aria-label="" aria-describedby="basic-addon1" value="<?echo html_escape($etab->phone)?>">
@@ -71,7 +71,7 @@
         </div>
 
         <div class="col-6">
-        <label class="font-weight-bold">Site web *</label>
+        <label class="font-weight-bold">Site web</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-wifi"></i></span></div>
                 <input type="text" name="site" class="form-control" placeholder="Site web" aria-label="" aria-describedby="basic-addon1" value="<?echo html_escape($etab->web_site)?>">

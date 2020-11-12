@@ -81,26 +81,25 @@
         </div>
         <hr>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-6">
             <label class="font-weight-bold">Image du produit</label>
                 <div class="input-group mb-3">
-                    <input type="file" name="photo">
+                    <input type="file" name="photo" size="8">
                 </div>
                 <i class="text-danger font-weight-bold">Votre image doit faire moins de 8Mo.</i><br>
             </div>
-        </div>
+        </div> -->
 
         <br>
 
-        <strong>TODOS : penser à connecter les switch à la bdd</strong>
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1">
-            <label class="custom-control-label" for="customSwitch1">Ne pas proposer ce produit à la carte</label>
+            <input type="checkbox" class="custom-control-input" id="not_in_card" name="not_in_card"  value="<??>">
+            <label class="custom-control-label" for="not_in_card">Ne pas proposer ce produit à la carte</label>
         </div>
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch2">
-            <label class="custom-control-label" for="customSwitch2">Produit en rupture de stock</label>
+            <input type="checkbox" class="custom-control-input" id="sold_out" name="sold_out" value="<??>">
+            <label class="custom-control-label" for="sold_out">Produit en rupture de stock</label>
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>

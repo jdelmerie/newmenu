@@ -1,0 +1,33 @@
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;  
+}
+
+a:link { 
+    text-decoration:none; 
+}
+
+.header {
+    background: #D9D5D5;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.retour {
+    text-decoration: none;
+    color: white;
+}
+
+.fiche{
+    min-height: 500px;
+}
+
+.product-card{
+    margin: 50px;
+    display: block;
+    width: 450px;
+    box-shadow:6px 8px 16px 5px rgba(0,0,0,0.42) ;
+}

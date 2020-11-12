@@ -34,7 +34,7 @@ class Products_Model extends CI_Model
     {
         $this->db->insert('products', $data);
     }
-    
+
     public function update($prod_id, $data)
     {
         $this->db->where('id', $prod_id);
@@ -44,9 +44,13 @@ class Products_Model extends CI_Model
 
     public function delete($prod_id)
     {
-        $this->db->where('id', $prod_id);
-        $this->db->where(['prop_id', $prod_id]);
-        $this->db->delete('products, link_prod_prices');
+        $this->db->delete('products', ['id' => $prod_id]);
+    }
+
+    public function deletelink($prod_id, $prices_id)
+    {
+        $this->db->where(['prod_id' => $prod_id, 'prices_id' => $prices_id]);
+        $this->db->delete('link_prod_prices');
     }
 
     public function activePiceCat($prod_id)
