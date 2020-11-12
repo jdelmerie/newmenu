@@ -20,7 +20,10 @@
                 <td><img src="<? echo base_url('/assets/img/icons/4-plate.png')?>" width="50px"></td>
                 <?}?>
                 <td class="text-center"><?=$category->id?></td>
-                <td><a href="/back/edit_category/<?=$category->id?>"><?=ucfirst($category->name)?></a></td>
+                <td>
+                    <a href="/back/edit_category/<?=$category->id?>"><?=ucfirst($category->name)?></a>
+                    <p><?=$category->description?></p>
+                </td>
                 <td class="text-center">
                     <a class="btn btn-primary" href="/back/edit_category/<?=$category->id?>">Modifier</a>
                     <a class="btn btn-warning" href="/back/delete_category/<?=$category->id?>">Supprimer</a>

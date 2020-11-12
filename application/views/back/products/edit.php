@@ -44,14 +44,14 @@
                 <label class="font-weight-bold">Prix</label>
 
 
-                <div style="<?echo $display_unique_price ?>" >
+                <div <? echo $display_unique_price ?> >
                     <!-- PRIX UNIQUE -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span></div><input type="text" name="prix" class="form-control" placeholder="0" aria-label="" aria-describedby="basic-addon1" value="<?echo html_escape($produit->price) ?>">
                     </div>
                 </div>
 
-                <div style="<?echo $displayprice_cat ?>">
+                <div <?echo $displayprice_cat ?>>
                     <!-- PRIX PAR TYPE -->
                     <?foreach ($catprices as $catprice) {?>
                     <div class="input-group">
