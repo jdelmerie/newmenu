@@ -2,7 +2,7 @@
     <?
     if (isset($etab_perso)){
         echo $etab_perso->presentation;
-    } else {
+    } else if ($etab_perso->presentation == ''){
         echo "<i>Présentation non renseignée pour l'instant</i>";
     }
     ?>
