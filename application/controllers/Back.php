@@ -144,7 +144,6 @@ class Back extends CI_Controller
 
     public function add_category_done()
     {
-        $this->load->library('form_validation');
         $nom = $this->input->post('nom');
         $description = $this->input->post('description');
         $rang = $this->input->post('rang');
@@ -167,14 +166,12 @@ class Back extends CI_Controller
         $data['title'] = 'Votre carte - Catégories de produits';
         $this->load->model('Categories_model', 'categories');
         $data['category'] = $this->categories->selectById($cat_id);
-        $data['icons'] = ['1-cocktail.png', '2-entree.png', '3-hotfood.png', '4-plate.png', '5-pizza.png', '6-hamburger.png', '7-meat.png', '8-pastas.png', '9-crustacean.png', '10-fish.png', '11-cake.png', '12-ice.png', '13-drink.png', '14-beer.png', '15-wine.png', '16-cafe.png', '17-digestif.png', '18-cheese.png', '19-salad.png', '20-soup.png', '21-shooters.png'];
         $this->template->load('layout_back', 'back/categories/edit', $data);
     }
 
     public function edit_category_done($cat_id)
     {
         $this->edit_category($cat_id);
-        $this->load->library('form_validation');
         $nom = $this->input->post('nom');
         $description = $this->input->post('description');
         $rang = $this->input->post('rang');
@@ -239,8 +236,6 @@ class Back extends CI_Controller
 
     public function add_product_done()
     {
-        $this->load->library('form_validation');
-
         $cat_id = $this->input->post('categorie');
         $nom = $this->input->post('nom');
         $description = $this->input->post('description');
@@ -319,13 +314,11 @@ class Back extends CI_Controller
             $data['display_unique_price'] = 'style="display : block;"';
             $data['displayprice_cat'] = 'style="display : none;"';
         }
-
         $this->template->load('layout_back', 'back/products/edit', $data);
     }
 
     public function edit_product_done($prod_id)
     {
-        $this->load->library('form_validation');
         $prod_id = $this->input->post('prod_id');
         $cat_id = $this->input->post('cat_id');
         $nom = $this->input->post('nom');
@@ -333,103 +326,43 @@ class Back extends CI_Controller
         $prix = $this->input->post('prix');
         $rang = $this->input->post('rang');
 
-        $this->load->helper(array('form'));
-        $config['upload_path'] = './uploads/products/';
-        $config['allowed_types'] = 'jpg|png';
-        $config['file_name'] = "prodcut_" . $prod_id;
-        $config['overwrite'] = true;
-        $config['max_size'] = 8;
-        $config['max_width'] = 1024;
-        $config['max_height'] = 768;
-        $this->load->library('upload', $config);
+        $pricecats = $this->input->post("pricecat");
+        $catprices_id = $this->input->post("catprice_id");
 
-        if (!$this->upload->do_upload('product_image')) {
-            $data['error'] = $this->upload->display_errors();
-            $this->session->set_flashdata('error_upload', $data['error']);
-            print_r($data);
+        if ($this->form_validation->run() == true) {
+            $this->load->model('Products_model', 'products');
+            $data = ['name' => $nom, 'composition' => $description, 'price' => $prix, 'rank' => $rang];
+            $this->products->update($prod_id, $data);
 
+            $this->load->model('Link_prod_prices_model', 'link');
+            $data['prod_prices'] = $this->link->selectAll($prod_id);
+
+            if (count($data['prod_prices']) > 0) {
+                $i = 0;
+                foreach ($pricecats as $row) {
+                    foreach ($catprices_id as $row) {
+                        $datakey = ['prod_id' => $prod_id, 'prices_id' => $catprices_id[$i]];
+                        $data3 = ['price' => $pricecats[$i]];
+                    }
+                    $i++;
+                    $this->link->update($data3, $datakey);
+                };
+            } else {
+                $i = 0;
+                foreach ($pricecats as $row) {
+                    foreach ($catprices_id as $row) {
+                        $data2 = ['prod_id' => $prod_id, 'price' => $pricecats[$i], 'prices_id' => $catprices_id[$i]];
+                    }
+                    $i++;
+                    $this->link->add($data2);
+                };
+            }
+            $this->session->set_flashdata('success_edit', 'Produit modifié');
+            redirect("back/display_products/$cat_id");
         } else {
-            $data['product_image'] = $this->upload->data();
-            // $img = $data['logo']['file_name'];
-            print_r($data);
+            $this->session->set_flashdata('error', "Une erreur s'est produite.");
+            redirect("back/display_products/$cat_id");
         }
-
-        // $pricecats = $this->input->post("pricecat");
-        // $catprices_id = $this->input->post("catprice_id");
-
-        // if ($this->form_validation->run() == true) {
-        //     $this->load->model('Products_model', 'products');
-        //     $data = ['name' => $nom, 'composition' => $description, 'price' => $prix, 'rank' => $rang];
-        //     $this->products->update($prod_id, $data);
-
-        //     $this->load->model('Link_prod_prices_model', 'link');
-        //     $data['prod_prices'] = $this->link->selectAll($prod_id);
-
-        //     if (count($data['prod_prices']) > 0) {
-        //         $i = 0;
-        //         foreach ($pricecats as $row) {
-        //             foreach ($catprices_id as $row) {
-        //                 $datakey = ['prod_id' => $prod_id, 'prices_id' => $catprices_id[$i]];
-        //                 $data3 = ['price' => $pricecats[$i]];
-        //             }
-        //             $i++;
-        //             $this->link->update($data3, $datakey);
-        //         };
-        //     } else {
-        //         $i = 0;
-        //         foreach ($pricecats as $row) {
-        //             foreach ($catprices_id as $row) {
-        //                 $data2 = ['prod_id' => $prod_id, 'price' => $pricecats[$i], 'prices_id' => $catprices_id[$i]];
-        //             }
-        //             $i++;
-        //             $this->link->add($data2);
-        //         };
-        //     }
-        //     $this->session->set_flashdata('success_edit', 'Produit modifié');
-        //     redirect("back/display_products/$cat_id");
-        // } else {
-        //     $this->session->set_flashdata('error', "Une erreur s'est produite.");
-        //     redirect("back/display_products/$cat_id");
-        // }
-    }
-
-    public function upload_product_img()
-    {
-        $this->load->helper(array('form'));
-        $config['upload_path'] = './uploads/products/';
-        $config['allowed_types'] = 'jpg|png';
-        $config['file_name'] = "prodcut_" . $prod_id;
-        $config['overwrite'] = true;
-        $config['max_size'] = 8;
-        $config['max_width'] = 1024;
-        $config['max_height'] = 768;
-
-        $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload('product_image')) {
-            $data['error'] = $this->upload->display_errors();
-            $this->session->set_flashdata('error_upload', $data['error']);
-            print_r($data);
-
-        } else {
-            $data['product_image'] = $this->upload->data();
-            // $img = $data['logo']['file_name'];
-            print_r($data);
-
-            // $this->load->model('Customisation_model', 'customisation');
-            // $data['etab_perso'] = $this->customisation->select($etab_id);
-
-            // if (isset($data['etab_perso']->logo)) {
-            //     $data_logo = ['logo' => $logo];
-            //     $this->customisation->update($etab_id, $data_logo);
-            // } else {
-            //     $data_logo = ['est_id' => $etab_id, 'logo' => $logo];
-            //     $this->customisation->add_logo($data_logo);
-            // }
-            // $this->output->delete_cache('back/etab/customisation/');
-            // $this->output->delete_cache('back/etab/dashboard/');
-        }
-        // redirect('back/customize');
     }
 
     public function delete_product($prod_id)
@@ -484,7 +417,6 @@ class Back extends CI_Controller
     public function add_quantity_done($cat_id)
     {
         $this->add_quantity($cat_id);
-        $this->load->library('form_validation');
 
         $nom = $this->input->post('nom');
         $rang = $this->input->post('rang');
@@ -517,7 +449,7 @@ class Back extends CI_Controller
 
     public function edit_single_quantity($qty_id)
     {
-        $this->load->library('form_validation');
+
         $qtyname = $this->input->post('qtyname');
         $cat_id = $this->input->post('cat_id');
 
@@ -592,7 +524,6 @@ class Back extends CI_Controller
 
     public function presentation_etab()
     {
-        $this->load->library('form_validation');
 
         $etab_id = $this->session->userdata('etab_id');
         $presentation = $this->input->post('presentation');
@@ -600,15 +531,13 @@ class Back extends CI_Controller
         if ($this->form_validation->run() == true) {
             $this->load->model('Customisation_model', 'customisation');
             $data = ['presentation' => $presentation];
-            $this->customisation->presentation($etab_id, $data);
+            $this->customisation->update($etab_id, $data);
             redirect('back/customize');
         }
     }
 
     public function color_etab()
     {
-        $this->load->library('form_validation');
-
         $etab_id = $this->session->userdata('etab_id');
         $background_color = $this->input->post('background_color');
         $header_color = $this->input->post('header_color');
@@ -616,9 +545,8 @@ class Back extends CI_Controller
         if ($this->form_validation->run() == true) {
             $this->load->model('Customisation_model', 'customisation');
             $data = ['background_color' => $background_color, 'header_color' => $header_color];
-            $this->customisation->colors($etab_id, $data);
+            $this->customisation->update($etab_id, $data);
             redirect('back/customize');
         }
     }
-
 }

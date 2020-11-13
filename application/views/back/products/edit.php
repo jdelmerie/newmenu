@@ -81,7 +81,7 @@
         </div>
         <hr>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-6">
             <label class="font-weight-bold">Image du produit</label>
                 <div class="input-group mb-3">
@@ -89,10 +89,7 @@
                 </div>
                 <i class="text-danger font-weight-bold">Votre image doit faire moins de 8Mo.</i><br>
             </div>
-        </div>
-
-        <br>
-
+        </div> -->
         <!-- <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="not_in_card" name="not_in_card"  value="<??>">
             <label class="custom-control-label" for="not_in_card">Ne pas proposer ce produit à la carte</label>
@@ -101,7 +98,7 @@
             <input type="checkbox" class="custom-control-input" id="sold_out" name="sold_out" value="<??>">
             <label class="custom-control-label" for="sold_out">Produit en rupture de stock</label>
         </div> -->
-        <br>
+     
         <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
         <a class="btn btn-warning" href="/back/delete_product/<?=$produit->id?>">Supprimer ce produit</a>
     </form>

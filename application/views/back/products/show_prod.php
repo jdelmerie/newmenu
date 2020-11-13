@@ -5,21 +5,21 @@
 
 <table class="table mt-5">
     <thead class="thead-light">
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">ORDRE</th>
-            <th scope="col">NOM DU PRODUITS</th>
-            <th scope="col">COMPOSITIONS</th>
-            <th scope="col">PRIX</th>
-            <th scope="col"></th>
+        <tr class="small">
+            <th class="text-center" scope="col"></th>
+            <th class="text-center" scope="col">ORDRE</th>
+            <th style="width:20%;" scope="col">NOM DU PRODUITS</th>
+            <th style="width:30%;" scope="col">COMPOSITIONS</th>
+            <th style="width:20%;" scope="col">PRIX</th>
+            <th style="width:60%;" scope="col"></th>
         </tr>
     </thead>
 
     <?foreach ($produits as $produit) {?>
     <tbody>
         <tr>
-            <td><img src="<? echo base_url('/assets/img/icons/4-plate.png')?>" width="50px"></td>
-            <td><?=$produit->rank?></td>
+            <td class="text-center"><img src="<? echo base_url('/assets/img/icons/4-plate.png')?>" width="50px"></td>
+            <td class="text-center"><?=$produit->rank?></td>
             <td><?=ucfirst($produit->name)?></td>
             <td><?=$produit->composition?></td>
             <td>

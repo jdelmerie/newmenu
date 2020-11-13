@@ -6,10 +6,10 @@
 
 <table class="table">
     <thead class="thead-light">
-        <tr>
-            <th scope="col"></th>
-            <th scope="col" class="text-center">ID</th>
-            <th scope="col">CATÉGORIES DE PRODUITS</th>
+        <tr class="small">
+            <th class="text-center" style="width:10%;" scope="col"></th>
+            <th class="text-center" style="width:10%;" scope="col">ORDRE</th>
+            <th style="width:50%;" scope="col">CATÉGORIES DE PRODUITS</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -64,9 +64,3 @@
 </div>
 
 <a class="mt-5 btn btn-primary" href="/back/add_category">Créer une catégorie de produits</a>
-
-
-
-
-<!-- TODOS : 
-<br>Nombres de produits (à voir après)<br>Achiffer si cette cat a des qty -->

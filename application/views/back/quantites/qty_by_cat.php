@@ -2,16 +2,16 @@
 <table class="table">
     <thead class="thead-light">
         <tr>
-            <th></th>
-            <th scope="col">ORDRE D'AFFICHAGE</th>
-            <th scope="col">NOM</th>
+            <th style="width:10%;"></th>
+            <th style="width:20%;"scope="col" class="text-center">ORDRE D'AFFICHAGE</th>
+            <th style="width:50%;"scope="col">NOM</th>
         </tr>
     </thead>
     <?foreach ($quantites as $quantity) {?>
     <tbody>
         <tr>
             <td></td>
-            <td><?=$quantity->rank?></td>
+            <td class="text-center"><?=$quantity->rank?></td>
             <td><?=ucfirst($quantity->name)?></td>
         </tr>
     </tbody>
