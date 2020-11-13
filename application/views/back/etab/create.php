@@ -22,7 +22,7 @@
 
             <label class="font-weight-bold">Adresse web d'accès à votre carte *</label>
                 <div class="input-group mb-3">
-                    <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"> </i>&nbsp;<?echo base_url() ?></span></div>
+                    <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"> </i>&nbsp;<?echo base_url('/carte/') ?></span></div>
                     <input type="text" name="url" class="form-control" placeholder="Adresse web d'accès à votre carte" aria-label="" aria-describedby="basic-addon1">
                 </div>
             </div>
