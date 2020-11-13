@@ -12,10 +12,10 @@
 
     <body style="background-color : <?=$background_color?> ">
 
-    <header class="header" style="background-color : <?=$header_color?> ">
+    <header class="header" style="background-color : <?=$header_color?>; color: <?=$color?> ">
         <div class="container">
             <div class="row">
-                <div class="col-xl-4 flex">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 flex">
                     <? if (isset($etab_perso)) {?>
                         <img class="rounded-circle" src="<? echo base_url("/uploads/logos/$etab_perso->logo") ?>" width="75px"height="75px">
                     <?} else {?>
@@ -23,7 +23,7 @@
                     <?}?>
                 </div>
 
-                <div class="col-xl-8">
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
                     <h1 class="display-4" ><?=ucfirst($etab->name)?></h1>
                     <? echo "$etab->adress, $etab->postal_code " .ucfirst($etab->city) ?><br>
                     <? echo "$etab->phone  $etab->web_site" ?>
@@ -32,7 +32,7 @@
         </div>
     </header>
 
-    <div class="mt-3">
+    <div class="mt-3 col-12">
         <p class="text-center lead">CARTE</p>
     </div>
 

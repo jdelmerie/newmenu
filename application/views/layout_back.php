@@ -14,7 +14,7 @@
 
   <div class="main">
     <div class="row">
-        <div class="col-xl-3 bg-dark">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 bg-dark">
           <div class="container-fluid">
             <h1 class="text-center text-white">NEW MENU</h1>
                 <ul class="nav flex-column my-5">
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="col-xl-9">
+        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
           <div class="container-fluid"><?=$contents?></div>
             <footer class="text-center m-5">
                 <p>&copy; Delmerie JOHN ROSE - <? echo date('Y')?></p>

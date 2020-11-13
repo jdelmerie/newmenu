@@ -1,5 +1,5 @@
-<div class="font-weight-bold flex retour">
-    <a class="retour" href="<? echo base_url("etab/category/$category->id?etab_id=$etab->id") ?>"><i class="fas fa-arrow-left"></i> Précédent</a>
+<div class="font-weight-bold flex retour" style="background-color : <?=$header_color?> ; color: <?=$color?>">
+    <a style="color: <?=$color?>" href="<? echo base_url("etab/category/$category->id?etab_id=$etab->id") ?>"><i class="fas fa-arrow-left"></i> Précédent</a>
     <h1 class="text-center"><?=ucfirst($produit->name)?></h1>
 </div>
 

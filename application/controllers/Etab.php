@@ -28,6 +28,7 @@ class Etab extends CI_Controller
         $data['title'] = $data['etab']->name;
         $data['header_color'] = $data['etab_perso']->header_color;
         $data['background_color'] = $data['etab_perso']->background_color;
+        $data['color'] = $data['etab_perso']->color;
 
         $this->template->load('layout_front', 'front/etab/presentation', $data);
     }
@@ -40,6 +41,7 @@ class Etab extends CI_Controller
         $data['etab_perso'] = $this->carte->get_presentation($etab_id);
         $data['header_color'] = $data['etab_perso']->header_color;
         $data['background_color'] = $data['etab_perso']->background_color;
+        $data['color'] = $data['etab_perso']->color;
 
         $this->load->model('Categories_model', 'categories');
         $this->load->model('Products_model', 'products');
@@ -64,6 +66,7 @@ class Etab extends CI_Controller
         $data['etab_perso'] = $this->carte->get_presentation($etab_id);
         $data['header_color'] = $data['etab_perso']->header_color;
         $data['background_color'] = $data['etab_perso']->background_color;
+        $data['color'] = $data['etab_perso']->color;
         $data['category'] = $this->categories->selectById($data['produit']->cat_id);
         $data['prod_prices'] = $this->link->getPriceByProdFront($prod_id);
         $data['title'] = $data['produit']->name;

@@ -87,11 +87,14 @@
 
     <div class="pt-3 pb-3">
         <form method="POST" action="<? echo base_url('back/color_etab') ?>">
-            <label for="head">En-tête</label>
-            <input type="color" id="head" name="header_color" value="<?=$etab_perso->header_color?>">
+            <label for="header_color">En-tête</label>
+            <input type="color" id="header_color" name="header_color" value="<?=$etab_perso->header_color?>">
             <br>
-            <label for="head">Fond de la carte</label>
-            <input type="color" id="head" name="background_color" value="<?=$etab_perso->background_color?>"><br>
+            <label for="color">Couleur principale</label>
+            <input type="color" id="color" name="color" value="<?=$etab_perso->color?>">
+            <br>
+            <label for="background_color">Fond de la carte</label>
+            <input type="color" id="background_color" name="background_color" value="<?=$etab_perso->background_color?>"><br>
             <input class="btn btn-primary" type="submit" value="Enregistrer">
         </form>
     </div>

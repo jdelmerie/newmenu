@@ -282,6 +282,12 @@ $config = [
             'label' => 'background_color',
             'rules' => 'required',
         ],
+
+        [
+            'field' => 'color',
+            'label' => 'color',
+            'rules' => 'required',
+        ],
     ],
     
 

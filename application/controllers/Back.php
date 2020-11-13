@@ -541,10 +541,11 @@ class Back extends CI_Controller
         $etab_id = $this->session->userdata('etab_id');
         $background_color = $this->input->post('background_color');
         $header_color = $this->input->post('header_color');
+        $color =  $this->input->post('color');
 
         if ($this->form_validation->run() == true) {
             $this->load->model('Customisation_model', 'customisation');
-            $data = ['background_color' => $background_color, 'header_color' => $header_color];
+            $data = ['background_color' => $background_color, 'header_color' => $header_color, 'color' => $color];
             $this->customisation->update($etab_id, $data);
             redirect('back/customize');
         }
