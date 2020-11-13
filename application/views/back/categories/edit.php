@@ -49,6 +49,6 @@
         </div> -->
         <!-- <hr> -->
         <input type="submit" class="btn btn-primary" value="Modifier cette catégorie de produits">
-        <a class="btn btn-warning" href="">Supprimer cette catégorie de produits</a>
+        <a class="btn btn-warning" href="/back/add_category">Supprimer cette catégorie de produits</a>
     </form>
 </div>

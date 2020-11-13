@@ -16,7 +16,7 @@
             <button type="submit" class="btn btn-primary">Réinitialiser le mot de passe</button>
             </form>
             <hr>
-            <a href="/welcome/login">Revenir à la page de connexion</a>
+            <a href="<? echo base_url('/welcome/login')?>">Revenir à la page de connexion</a>
             <?if ($this->session->flashdata('error')) {?>
                 <div class="alert alert-danger" role="alert">
                     <?echo $this->session->flashdata('error')?>

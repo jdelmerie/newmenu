@@ -30,6 +30,6 @@
 <?echo $this->session->flashdata('error') ?>
 </div>
 <?}?>
-        <a href="/welcome/index">Revenir à la page d'accueil</a>
+        <a href="<? echo base_url('/welcome/index')?>">Revenir à la page d'accueil</a>
     </div>
 </div>

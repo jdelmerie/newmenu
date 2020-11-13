@@ -13,7 +13,7 @@
                 <label for="exampleInputPassword1">Votre mot de Passe</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" name="password">
             </div>
-            <a href="/welcome/forgotten_password">Mot de passe oublié ?</a><br>
+            <a href="<? echo base_url('/welcome/forgotten_password')?>">Mot de passe oublié ?</a><br>
             <button type="submit" class="btn btn-primary">Se connecter</button>
             </form>
             <hr>
@@ -39,7 +39,7 @@
 <?echo $this->session->flashdata('error_co') ?>
 </div>
 <?}?>
-            <a href="/welcome/signin">Vous n'avez pas encore de compte ? Inscrivez vous ici.</a>
+            <a href="<? echo base_url('/welcome/signin')?>">Vous n'avez pas encore de compte ? Inscrivez vous ici.</a>
         </div>
     </div>
 </div>
