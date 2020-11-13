@@ -26,12 +26,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="row m-5 text-center">
 		<div class="col-6">
 			<h2>Connexion</h2>
-			<a class="text-white btn btn-primary" href="/welcome/login">Se connecter</a>
+			<a class="text-white btn btn-primary" href="<? echo base_url('/welcome/login')?>">Se connecter</a>
 		</div>
 
 		<div class="col-6">
 			<h2>Inscription</h2>
-			<a class="text-white btn btn-primary" href="/welcome/signin">S'inscrire</a>
+			<a class="text-white btn btn-primary" href="<? echo base_url('/welcome/signin')?>">S'inscrire</a>
 		</div>
 	</div>
 </div>
