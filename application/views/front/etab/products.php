@@ -1,5 +1,5 @@
-<div>
-    <p class="text-center font-weight-bold text-white bg-info lead p-3"><?=ucfirst($category->name)?></p>
+<div >
+    <p class="text-center font-weight-bold lead p-3"><?=ucfirst($category->name)?></p>
 </div>
 
 <? if (count($produits) > 0) {?>

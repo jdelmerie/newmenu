@@ -25,8 +25,8 @@
 
                 <div class="col-xl-8">
                     <h1 class="display-4" ><?=ucfirst($etab->name)?></h1>
-                    <? echo "$etab->adress, $etab->postal_code " .ucfirst($etab->city) ?>
-                    <!-- Mettre num + site -->
+                    <? echo "$etab->adress, $etab->postal_code " .ucfirst($etab->city) ?><br>
+                    <? echo "$etab->phone  $etab->web_site" ?>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
         <p class="text-center flex lead">CARTE</p>
     </div>
 
-    <div class="container mt-3 border">
+    <div class="container mt-3">
         <ul class="nav nav-pills flex-column flex-sm-row flex">
             <li class="nav-item">
                 <a class="flex-sm-fill text-sm-center nav-link" href="<? echo base_url("etab/display/$etab->id") ?>">Présentation</a>

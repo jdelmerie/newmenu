@@ -7,7 +7,6 @@
 	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9e7f9ad57b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<? echo base_url('/assets/css/')?>style_back.css">
-    <script type="text/javascript" src="<? echo base_url('/assets/js/')?>script.js" defer></script>
     <title><?=$title?></title>
   </head>
   <body>
@@ -16,7 +15,7 @@
     <div class="row">
         <div class="col-xl-3 bg-dark">
           <div class="container-fluid">
-            <h1 class="text-center text-white display-4">NEW MENU</h1>
+            <h1 class="text-center text-white">NEW MENU</h1>
                 <ul class="nav flex-column my-5">
                     <?foreach ($nav_list as $route => $nav_item) {?>
                       <a class="btn btn-primary m-3" href="<?=$route?>"><?=$nav_item?></a>

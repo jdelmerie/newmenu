@@ -1,4 +1,4 @@
-<div class="border bg-light p-4">
+<div class="border p-4 text-center">
     <?
     if (isset($etab_perso)){
         echo $etab_perso->presentation;
