@@ -1,12 +1,12 @@
-<div >
-    <p class="text-center font-weight-bold lead p-3"><?=ucfirst($category->name)?></p>
+<div style="background-color : <?=$header_color?>">
+    <p class="text-center lead p-3"><?=ucfirst($category->name)?></p>
 </div>
 
 <? if (count($produits) > 0) {?>
-<ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush">
     <? foreach($produits as $produit) {?>
         <a href="<? echo base_url("etab/product/$produit->id?etab_id=$etab->id") ?>">
-            <li class="list-group-item">
+            <li class="list-group-item m-2">
                 <div class="row">
                     <div class="col-2">
                         <? if ($produit->image == 0) {?>

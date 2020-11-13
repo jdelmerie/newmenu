@@ -7,6 +7,7 @@
 	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9e7f9ad57b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<? echo base_url('/assets/css/')?>style_back.css">
+    <script src="//cdn.ckeditor.com/4.15.1/full/ckeditor.js"></script>
     <title><?=$title?></title>
   </head>
   <body>

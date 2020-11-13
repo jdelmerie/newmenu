@@ -33,7 +33,7 @@
     </header>
 
     <div class="mt-3">
-        <p class="text-center flex lead">CARTE</p>
+        <p class="text-center lead">CARTE</p>
     </div>
 
     <div class="container mt-3">

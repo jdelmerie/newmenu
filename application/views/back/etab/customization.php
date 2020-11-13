@@ -61,13 +61,18 @@
     <div class="pt-3 pb-3">
         <label class="font-weight-bold">Présentation de votre établissement</label><br>
         <form action="<? echo base_url('back/presentation_etab') ?>" method="post">
-            <textarea name="presentation" cols="130" rows="10">
+            <textarea name="presentation">
                 <? if (isset($etab_perso)){
                         echo html_escape($etab_perso->presentation);
                     } else {
                         echo "";
                     }?>
-            </textarea><br><br>
+                </textarea>
+
+                <script>
+                    CKEDITOR.replace('presentation');
+                </script>
+                <br>
             <input class="btn btn-primary" type="submit" value="Enregistrer">
         </form>
     </div>
