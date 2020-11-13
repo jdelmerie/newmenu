@@ -50,3 +50,5 @@
         <?}?>
     </table>
 </div>
+
+<a class="mt-5 btn btn-primary" href="/back/quantity">Revenir en arrière</a>
