@@ -54,16 +54,6 @@
             </div>
         </div>
         <hr>
-
-        <!-- <div class="row">
-            <div class="col-6">
-            <label class="font-weight-bold">Image du produit</label>
-                <div class="input-group mb-3">
-                    <input type="file" name="photo">
-                </div>
-                <i class="text-danger font-weight-bold">Votre image doit faire moins de 8Mo.</i><br>
-            </div>
-        </div> -->
         
         <br>
         <button type="submit" class="btn btn-primary">Ajouter ce produit</button>

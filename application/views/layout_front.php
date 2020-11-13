@@ -10,9 +10,9 @@
         <title><?=ucfirst($title)?></title>
     </head>
 
-    <body>
+    <body style="background-color : <?=$background_color?> ">
 
-    <header class="header">
+    <header class="header" style="background-color : <?=$header_color?> ">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 flex">

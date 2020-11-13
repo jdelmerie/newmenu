@@ -32,4 +32,11 @@ class Customisation_model extends CI_Model
         $this->db->set($data);
         $this->db->update('customisation');
     }
+
+    public function colors($etab_id, $data)
+    {
+        $this->db->where('est_id', $etab_id);
+        $this->db->set($data);
+        $this->db->update('customisation');
+    }
 }

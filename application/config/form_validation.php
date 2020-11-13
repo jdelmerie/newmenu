@@ -269,6 +269,20 @@ $config = [
             'rules' => 'trim|max_length[1000]',
         ],
     ],
+
+    'back/color_etab' => [
+        [
+            'field' => 'header_color',
+            'label' => 'header_color',
+            'rules' => 'required',
+        ],
+
+        [
+            'field' => 'background_color',
+            'label' => 'background_color',
+            'rules' => 'required',
+        ],
+    ],
     
 
 

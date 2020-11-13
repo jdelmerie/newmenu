@@ -287,8 +287,6 @@ class Back extends CI_Controller
         } else {
             redirect('back/add_product');
         }
-
-        // print_r($data);
     }
 
     public function edit_product($prod_id)
@@ -323,8 +321,6 @@ class Back extends CI_Controller
         }
 
         $this->template->load('layout_back', 'back/products/edit', $data);
-
-        echo "cc";
     }
 
     public function edit_product_done($prod_id)
@@ -337,52 +333,72 @@ class Back extends CI_Controller
         $prix = $this->input->post('prix');
         $rang = $this->input->post('rang');
 
-        $pricecats = $this->input->post("pricecat");
-        $catprices_id = $this->input->post("catprice_id");
-
-        if ($this->form_validation->run() == true) {
-            $this->load->model('Products_model', 'products');
-            $data = ['name' => $nom, 'composition' => $description, 'price' => $prix, 'rank' => $rang];
-            $this->products->update($prod_id, $data);
-
-            $this->load->model('Link_prod_prices_model', 'link');
-            $data['prod_prices'] = $this->link->selectAll($prod_id);
-
-            if (count($data['prod_prices']) > 0) {
-                $i = 0;
-                foreach ($pricecats as $row) {
-                    foreach ($catprices_id as $row) {
-                        $datakey = ['prod_id' => $prod_id, 'prices_id' => $catprices_id[$i]];
-                        $data3 = ['price' => $pricecats[$i]];
-                    }
-                    $i++;
-                    $this->link->update($data3, $datakey);
-                };
-            } else {
-                $i = 0;
-                foreach ($pricecats as $row) {
-                    foreach ($catprices_id as $row) {
-                        $data2 = ['prod_id' => $prod_id, 'price' => $pricecats[$i], 'prices_id' => $catprices_id[$i]];
-                    }
-                    $i++;
-                    $this->link->add($data2);
-                };
-            }
-            $this->session->set_flashdata('success_edit', 'Produit modifié');
-            redirect("back/display_products/$cat_id");
-        } else {
-            $this->session->set_flashdata('error', "Une erreur s'est produite.");
-            redirect("back/display_products/$cat_id");
-        }
-    }
-
-    public function upload_product_img($prod_id)
-    {
         $this->load->helper(array('form'));
-
         $config['upload_path'] = './uploads/products/';
         $config['allowed_types'] = 'jpg|png';
-        $config['file_name'] = "prodcut_";
+        $config['file_name'] = "prodcut_" . $prod_id;
+        $config['overwrite'] = true;
+        $config['max_size'] = 8;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('product_image')) {
+            $data['error'] = $this->upload->display_errors();
+            $this->session->set_flashdata('error_upload', $data['error']);
+            print_r($data);
+
+        } else {
+            $data['product_image'] = $this->upload->data();
+            // $img = $data['logo']['file_name'];
+            print_r($data);
+        }
+
+        // $pricecats = $this->input->post("pricecat");
+        // $catprices_id = $this->input->post("catprice_id");
+
+        // if ($this->form_validation->run() == true) {
+        //     $this->load->model('Products_model', 'products');
+        //     $data = ['name' => $nom, 'composition' => $description, 'price' => $prix, 'rank' => $rang];
+        //     $this->products->update($prod_id, $data);
+
+        //     $this->load->model('Link_prod_prices_model', 'link');
+        //     $data['prod_prices'] = $this->link->selectAll($prod_id);
+
+        //     if (count($data['prod_prices']) > 0) {
+        //         $i = 0;
+        //         foreach ($pricecats as $row) {
+        //             foreach ($catprices_id as $row) {
+        //                 $datakey = ['prod_id' => $prod_id, 'prices_id' => $catprices_id[$i]];
+        //                 $data3 = ['price' => $pricecats[$i]];
+        //             }
+        //             $i++;
+        //             $this->link->update($data3, $datakey);
+        //         };
+        //     } else {
+        //         $i = 0;
+        //         foreach ($pricecats as $row) {
+        //             foreach ($catprices_id as $row) {
+        //                 $data2 = ['prod_id' => $prod_id, 'price' => $pricecats[$i], 'prices_id' => $catprices_id[$i]];
+        //             }
+        //             $i++;
+        //             $this->link->add($data2);
+        //         };
+        //     }
+        //     $this->session->set_flashdata('success_edit', 'Produit modifié');
+        //     redirect("back/display_products/$cat_id");
+        // } else {
+        //     $this->session->set_flashdata('error', "Une erreur s'est produite.");
+        //     redirect("back/display_products/$cat_id");
+        // }
+    }
+
+    public function upload_product_img()
+    {
+        $this->load->helper(array('form'));
+        $config['upload_path'] = './uploads/products/';
+        $config['allowed_types'] = 'jpg|png';
+        $config['file_name'] = "prodcut_" . $prod_id;
         $config['overwrite'] = true;
         $config['max_size'] = 8;
         $config['max_width'] = 1024;
@@ -585,6 +601,22 @@ class Back extends CI_Controller
             $this->load->model('Customisation_model', 'customisation');
             $data = ['presentation' => $presentation];
             $this->customisation->presentation($etab_id, $data);
+            redirect('back/customize');
+        }
+    }
+
+    public function color_etab()
+    {
+        $this->load->library('form_validation');
+
+        $etab_id = $this->session->userdata('etab_id');
+        $background_color = $this->input->post('background_color');
+        $header_color = $this->input->post('header_color');
+
+        if ($this->form_validation->run() == true) {
+            $this->load->model('Customisation_model', 'customisation');
+            $data = ['background_color' => $background_color, 'header_color' => $header_color];
+            $this->customisation->colors($etab_id, $data);
             redirect('back/customize');
         }
     }

@@ -74,20 +74,20 @@
 
     <hr>
 
-    <!-- <div class="bg-success p-2 text-white small mb-3">
-        Modifier l'image de fond de votre carte pour mieux refléter l'image de votre établissement. Notez que ces images sont des motifs qui sont répétés pour remplir entièrement les dimensions de l'écran.
+    <div class="bg-success p-2 text-white small mb-3">
+        Modifier les couleurs (en tête et corps) de votre carte pour mieux refléter l'image de votre établissement.
     </div>
-    <label class="font-weight-bold">Présentation de votre établissement</label><br>
-        <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1">
-            <label class="custom-control-label" for="customSwitch1">Ne pas utiliser d'image (le fond de votre carte sera blanc par défaut).</label>
-        </div>
-        <br>
-        <div>
-            <form action="" method="POST">
-                <a href=""><img src="<? /*echo base_url("/assets/img/background/bck-1.jpg")*/ ?>" width="150px" height="150px"></a>
-                <a href=""><img src="<? /*echo base_url("/assets/img/background/bck-2.jpg") */ ?>" width="150px" height="150px"></a>
-                <a href=""><img src="<? /*echo base_url("/assets/img/background/bck-3.jpg") */ ?>" width="150px" height="150px"></a>
-            </form>
-        </div> -->
+    <label class="font-weight-bold">Les couleurs de votre carte</label><br>
+    <span><i>Si vous ne choissiez aucune couleur, votre carte sera présentée sous des couleurs par défaut.</i></span>
+
+    <div class="pt-3 pb-3">
+        <form method="POST" action="<? echo base_url('back/color_etab') ?>">
+            <label for="head">En-tête</label>
+            <input type="color" id="head" name="header_color" value="<?=$etab_perso->header_color?>">
+            <br>
+            <label for="head">Fond de la carte</label>
+            <input type="color" id="head" name="background_color" value="<?=$etab_perso->background_color?>"><br>
+            <input class="btn btn-primary" type="submit" value="Enregistrer">
+        </form>
+    </div>
 </div>
